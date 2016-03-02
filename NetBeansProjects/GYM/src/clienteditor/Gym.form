@@ -339,6 +339,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="memNewbuttonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="memDeleteButton">
               <Properties>
@@ -1331,4 +1334,3 @@
     </Container>
   </SubComponents>
 </Form>
-

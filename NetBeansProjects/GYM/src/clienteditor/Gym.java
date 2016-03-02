@@ -351,13 +351,13 @@ public class Gym extends javax.swing.JPanel {
             .add(jPanel1Layout.createSequentialGroup()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memNewbutton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                            .add(memNewbutton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memSearchButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(memSearchButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
                     .add(memTrainingProg, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -478,7 +478,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Front Desk", jPanel1);
+        memTab.addTab("Members", jPanel1);
 
         MemFirstLabel1.setText("First Name:");
 
@@ -583,11 +583,6 @@ public class Gym extends javax.swing.JPanel {
         empUpdateButton.setText("Update");
 
         empNewbutton.setText("New");
-        empNewbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empNewbuttonActionPerformed(evt);
-            }
-        });
 
         empDeleteButton.setText("Delete");
 
@@ -726,7 +721,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Trainers", jPanel6);
+        memTab.addTab("Employees", jPanel6);
 
         MemFirstLabel2.setText("Name:");
 
@@ -880,7 +875,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Maintenance", jPanel7);
+        memTab.addTab("Equipment", jPanel7);
 
         jLabel12.setText("Create a report for Gyms income from Starting Date:");
 
@@ -953,7 +948,7 @@ public class Gym extends javax.swing.JPanel {
                 .addContainerGap(319, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Manager", jPanel9);
+        memTab.addTab("Reports", jPanel9);
 
         clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         clientInfoLabel.setText("                    R.E.P.S"); // NOI18N
