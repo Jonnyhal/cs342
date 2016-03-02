@@ -5,16 +5,17 @@
  */
 package clienteditor;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author jonny
  */
-public class Members extends javax.swing.JDialog {
-        private Client client = Client.createClient();
+public class Employees extends javax.swing.JDialog {
+         private Client client = Client.createClient();
     /**
-     * Creates new form NewJDialog
+     * Creates new form Employees
      */
-    public Members(java.awt.Frame parent, boolean modal) {
+    public Employees(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -72,7 +73,7 @@ public class Members extends javax.swing.JDialog {
         usernameLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
 
         clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        clientInfoLabel.setText("Member:"); // NOI18N
+        clientInfoLabel.setText("Employees:"); // NOI18N
 
         clientInfoPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -230,7 +231,7 @@ public class Members extends javax.swing.JDialog {
                                         .addComponent(femaleRadioButton))
                                     .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(DateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 122, Short.MAX_VALUE)))))
+                                .addGap(0, 103, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         personalPanelLayout.setVerticalGroup(
@@ -338,7 +339,7 @@ public class Members extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CardNumber)
-                    .addComponent(NameOnCard, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(NameOnCard, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                     .addComponent(DateOfPayment)
                     .addComponent(TotalPayment))
                 .addContainerGap())
@@ -406,7 +407,6 @@ public class Members extends javax.swing.JDialog {
         if (firstName.getText() == null) {
             JOptionPane.showMessageDialog(null, "Please enter a First Name");
         }
-
     }//GEN-LAST:event_firstNameActionPerformed
 
     private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
@@ -429,7 +429,6 @@ public class Members extends javax.swing.JDialog {
             //}
         //************************************
         client.setSex(1);
-
     }//GEN-LAST:event_maleRadioButtonActionPerformed
 
     private void femaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadioButtonActionPerformed
@@ -500,12 +499,13 @@ public class Members extends javax.swing.JDialog {
             && client.getPhone() != null && Email.getText() != null){
             JOptionPane.showMessageDialog(null,"Welcome to Fitness 21 " +fname+" "+lname);
         }
+        //member.setVisible(false);
         dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
-       
+
         dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
@@ -678,21 +678,20 @@ public class Members extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Members.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Members.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Members.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Members.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Members dialog = new Members(new javax.swing.JFrame(), true);
+                Employees dialog = new Employees(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

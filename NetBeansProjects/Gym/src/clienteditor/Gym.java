@@ -41,7 +41,7 @@ import java.text.*;
 //import javax.swing.JOptionPane;
 
 public class Gym extends javax.swing.JPanel {
-    private Members client = Members.createTestClient();
+    private Client client = Client.createClient();
 
     public Gym() {
         initComponents();
@@ -49,11 +49,11 @@ public class Gym extends javax.swing.JPanel {
     }
 
     /**
-     * Returns <code>Members</code> being edited.
+     * Returns <code>Client</code> being edited.
      * 
-     * @return <code>Members</code> being edited.
+     * @return <code>Client</code> being edited.
      */
-    public Members getClient() {
+    public Client getClient() {
         return client;
     }
 
@@ -62,8 +62,8 @@ public class Gym extends javax.swing.JPanel {
      * 
      * @param client client to edit.
      */
-    public void setClient(Members client) {
-        Members oldClient = this.client;
+    public void setClient(Client client) {
+        Client oldClient = this.client;
         this.client = client;
         firePropertyChange("client", oldClient, client);
     }
@@ -230,6 +230,11 @@ public class Gym extends javax.swing.JPanel {
         memUpdateButton.setText("Update");
 
         memNewbutton.setText("New");
+        memNewbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memNewbuttonActionPerformed(evt);
+            }
+        });
 
         memDeleteButton.setText("Delete");
 
@@ -346,13 +351,13 @@ public class Gym extends javax.swing.JPanel {
             .add(jPanel1Layout.createSequentialGroup()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .add(memNewbutton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(memNewbutton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(memSearchButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
+                            .add(memSearchButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                            .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .add(memTrainingProg, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -473,7 +478,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Members", jPanel1);
+        memTab.addTab("Front Desk", jPanel1);
 
         MemFirstLabel1.setText("First Name:");
 
@@ -578,6 +583,11 @@ public class Gym extends javax.swing.JPanel {
         empUpdateButton.setText("Update");
 
         empNewbutton.setText("New");
+        empNewbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empNewbuttonActionPerformed(evt);
+            }
+        });
 
         empDeleteButton.setText("Delete");
 
@@ -716,7 +726,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Employees", jPanel6);
+        memTab.addTab("Trainers", jPanel6);
 
         MemFirstLabel2.setText("Name:");
 
@@ -870,7 +880,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Equipment", jPanel7);
+        memTab.addTab("Maintenance", jPanel7);
 
         jLabel12.setText("Create a report for Gyms income from Starting Date:");
 
@@ -943,7 +953,7 @@ public class Gym extends javax.swing.JPanel {
                 .addContainerGap(319, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Reports", jPanel9);
+        memTab.addTab("Manager", jPanel9);
 
         clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         clientInfoLabel.setText("                    R.E.P.S"); // NOI18N
@@ -1035,6 +1045,18 @@ public class Gym extends javax.swing.JPanel {
     private void jScrollPane7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane7MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane7MousePressed
+
+    private void memNewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memNewbuttonActionPerformed
+        // TODO add your handling code here:
+        Members member = new Members(new javax.swing.JFrame(), true);
+        member.setVisible(true);
+    }//GEN-LAST:event_memNewbuttonActionPerformed
+
+    private void empNewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empNewbuttonActionPerformed
+        // TODO add your handling code here:
+        Employees emp = new Employees(new javax.swing.JFrame(), true);
+        emp.setVisible(true);
+    }//GEN-LAST:event_empNewbuttonActionPerformed
     
     /**
      //* @param args the command line arguments
