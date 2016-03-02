@@ -583,6 +583,11 @@ public class Gym extends javax.swing.JPanel {
         empUpdateButton.setText("Update");
 
         empNewbutton.setText("New");
+        empNewbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empNewbuttonActionPerformed(evt);
+            }
+        });
 
         empDeleteButton.setText("Delete");
 

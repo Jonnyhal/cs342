@@ -29,17 +29,377 @@ public class Members extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        usernameLabel = new javax.swing.JLabel();
+        clientInfoLabel = new javax.swing.JLabel();
+        clientInfoPane = new javax.swing.JTabbedPane();
+        personalPanel = new javax.swing.JPanel();
+        firstNameLabel = new javax.swing.JLabel();
+        firstName = new javax.swing.JTextField();
+        surnameLabel = new javax.swing.JLabel();
+        LastName = new javax.swing.JTextField();
+        sexLabel = new javax.swing.JLabel();
+        maritalStatusLabel = new javax.swing.JLabel();
+        maleRadioButton = new javax.swing.JRadioButton();
+        femaleRadioButton = new javax.swing.JRadioButton();
+        ageLabel = new javax.swing.JLabel();
+        sexLabel1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        SaveButton = new javax.swing.JButton();
+        CancelButton = new javax.swing.JButton();
+        NewTrainerProgram = new javax.swing.JButton();
+        DateOfBirth = new javax.swing.JTextField();
+        StreetAddr = new javax.swing.JTextField();
+        City = new javax.swing.JTextField();
+        State = new javax.swing.JTextField();
+        Zip = new javax.swing.JTextField();
+        PhoneNumber = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        StartDate = new javax.swing.JTextField();
+        contactPanel = new javax.swing.JPanel();
+        nicknameLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        webLabel = new javax.swing.JLabel();
+        imLabel = new javax.swing.JLabel();
+        CardNumber = new javax.swing.JTextField();
+        NameOnCard = new javax.swing.JTextField();
+        DateOfPayment = new javax.swing.JTextField();
+        TotalPayment = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        usernameLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+
+        clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        clientInfoLabel.setText("Member:"); // NOI18N
+
+        clientInfoPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        personalPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        firstNameLabel.setText("First Name:"); // NOI18N
+
+        firstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstNameActionPerformed(evt);
+            }
+        });
+
+        surnameLabel.setText("Last Name:"); // NOI18N
+
+        LastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastNameActionPerformed(evt);
+            }
+        });
+
+        sexLabel.setText("Sex:"); // NOI18N
+
+        maritalStatusLabel.setText("Date Of Birth:"); // NOI18N
+
+        maleRadioButton.setText("male"); // NOI18N
+        maleRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maleRadioButtonActionPerformed(evt);
+            }
+        });
+
+        femaleRadioButton.setText("female"); // NOI18N
+        femaleRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femaleRadioButtonActionPerformed(evt);
+            }
+        });
+
+        ageLabel.setText("Street Addr:"); // NOI18N
+
+        sexLabel1.setText("City:"); // NOI18N
+
+        jLabel1.setText("State:");
+
+        jLabel2.setText("Zip:");
+
+        jLabel3.setText("Phone Num:");
+
+        jLabel4.setText("Email:");
+
+        SaveButton.setText("Save");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+
+        CancelButton.setText("Cancel");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButtonActionPerformed(evt);
+            }
+        });
+
+        NewTrainerProgram.setText("New Trainer Program");
+        NewTrainerProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewTrainerProgramActionPerformed(evt);
+            }
+        });
+
+        DateOfBirth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DateOfBirthActionPerformed(evt);
+            }
+        });
+
+        StreetAddr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StreetAddrActionPerformed(evt);
+            }
+        });
+
+        City.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CityActionPerformed(evt);
+            }
+        });
+
+        State.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StateActionPerformed(evt);
+            }
+        });
+
+        Zip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ZipActionPerformed(evt);
+            }
+        });
+
+        PhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PhoneNumberActionPerformed(evt);
+            }
+        });
+
+        Email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Start Date:");
+
+        StartDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StartDateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout personalPanelLayout = new javax.swing.GroupLayout(personalPanel);
+        personalPanel.setLayout(personalPanelLayout);
+        personalPanelLayout.setHorizontalGroup(
+            personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(personalPanelLayout.createSequentialGroup()
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(personalPanelLayout.createSequentialGroup()
+                        .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(NewTrainerProgram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(personalPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstNameLabel)
+                            .addComponent(surnameLabel)
+                            .addComponent(maritalStatusLabel)
+                            .addComponent(sexLabel)
+                            .addComponent(ageLabel)
+                            .addComponent(sexLabel1)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(6, 6, 6)
+                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstName, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(LastName)
+                            .addComponent(StreetAddr)
+                            .addComponent(City)
+                            .addComponent(State)
+                            .addComponent(Zip)
+                            .addComponent(PhoneNumber)
+                            .addComponent(Email)
+                            .addGroup(personalPanelLayout.createSequentialGroup()
+                                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(personalPanelLayout.createSequentialGroup()
+                                        .addComponent(maleRadioButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(femaleRadioButton))
+                                    .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        personalPanelLayout.setVerticalGroup(
+            personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(personalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(firstNameLabel)
+                    .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(surnameLabel)
+                    .addComponent(LastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maritalStatusLabel)
+                    .addComponent(DateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sexLabel)
+                    .addComponent(maleRadioButton)
+                    .addComponent(femaleRadioButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ageLabel)
+                    .addComponent(StreetAddr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sexLabel1)
+                    .addComponent(City, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Zip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SaveButton)
+                    .addComponent(CancelButton)
+                    .addComponent(NewTrainerProgram))
+                .addGap(24, 24, 24))
+        );
+
+        clientInfoPane.addTab("Personal Info", personalPanel);
+
+        contactPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        nicknameLabel.setText("Card Number:"); // NOI18N
+
+        emailLabel.setText("Name on Card:"); // NOI18N
+
+        webLabel.setText("Date of Payment:"); // NOI18N
+
+        imLabel.setText("Total Payment:"); // NOI18N
+
+        CardNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CardNumberActionPerformed(evt);
+            }
+        });
+
+        NameOnCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameOnCardActionPerformed(evt);
+            }
+        });
+
+        DateOfPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DateOfPaymentActionPerformed(evt);
+            }
+        });
+
+        TotalPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TotalPaymentActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout contactPanelLayout = new javax.swing.GroupLayout(contactPanel);
+        contactPanel.setLayout(contactPanelLayout);
+        contactPanelLayout.setHorizontalGroup(
+            contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contactPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nicknameLabel)
+                    .addComponent(emailLabel)
+                    .addComponent(webLabel)
+                    .addComponent(imLabel))
+                .addGap(24, 24, 24)
+                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CardNumber)
+                    .addComponent(NameOnCard, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(DateOfPayment)
+                    .addComponent(TotalPayment))
+                .addContainerGap())
+        );
+        contactPanelLayout.setVerticalGroup(
+            contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contactPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nicknameLabel)
+                    .addComponent(CardNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailLabel)
+                    .addComponent(NameOnCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(webLabel)
+                    .addComponent(DateOfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imLabel)
+                    .addComponent(TotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(283, Short.MAX_VALUE))
+        );
+
+        clientInfoPane.addTab("Payment Info", contactPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clientInfoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(clientInfoPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clientInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(clientInfoPane))
         );
 
         pack();
@@ -48,8 +408,8 @@ public class Members extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify                     
+    // End of variables declaration                   
     private void initComponents() {
 
         usernameLabel = new javax.swing.JLabel();
@@ -415,7 +775,7 @@ public class Members extends javax.swing.JDialog {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     
     
@@ -433,7 +793,6 @@ public class Members extends javax.swing.JDialog {
         if (firstName.getText() == null) {
             JOptionPane.showMessageDialog(null, "Please enter a First Name");
         }
-
     }//GEN-LAST:event_firstNameActionPerformed
 
     private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
@@ -456,7 +815,6 @@ public class Members extends javax.swing.JDialog {
             //}
         //************************************
         client.setSex(1);
-
     }//GEN-LAST:event_maleRadioButtonActionPerformed
 
     private void femaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadioButtonActionPerformed
@@ -527,13 +885,20 @@ public class Members extends javax.swing.JDialog {
             && client.getPhone() != null && Email.getText() != null){
             JOptionPane.showMessageDialog(null,"Welcome to Fitness 21 " +fname+" "+lname);
         }
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
-       
-        dispose();
+        /*
+        cancels the new member and closes out the window without saving
+        anything
+        possible trouble:
+        -when cancel is pressed and there are fields that arent empty
+        are we going to have to set everything to NULL or will it
+        just not save it.
+        */
+        System.exit(0);
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void DateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfBirthActionPerformed
@@ -688,6 +1053,21 @@ public class Members extends javax.swing.JDialog {
         */
     }//GEN-LAST:event_TotalPaymentActionPerformed
 
+    private void NewTrainerProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTrainerProgramActionPerformed
+        // TODO add your handling code here:
+        /*
+        try to figure out how to open up a new window that allows for the
+        new trainer program to be accepted.
+
+        **if possible**
+        if the member doesnt have a training program dont put a
+        trainer program tab and then once a member has added a trainer
+        program add the trainer program tab.
+        ***************
+
+        */
+    }//GEN-LAST:event_NewTrainerProgramActionPerformed
+
 
    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -729,7 +1109,7 @@ public class Members extends javax.swing.JDialog {
         });
     }
    
- // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;
     private javax.swing.JTextField CardNumber;
     private javax.swing.JTextField City;
@@ -738,6 +1118,7 @@ public class Members extends javax.swing.JDialog {
     private javax.swing.JTextField Email;
     private javax.swing.JTextField LastName;
     private javax.swing.JTextField NameOnCard;
+    private javax.swing.JButton NewTrainerProgram;
     private javax.swing.JTextField PhoneNumber;
     private javax.swing.JButton SaveButton;
     private javax.swing.JTextField StartDate;
