@@ -66,6 +66,8 @@ public class Employees extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NewTrainerProgram = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         usernameLabel = new javax.swing.JLabel();
         clientInfoLabel = new javax.swing.JLabel();
         clientInfoPane = new javax.swing.JTabbedPane();
@@ -86,7 +88,6 @@ public class Employees extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         SaveButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
-        NewTrainerProgram = new javax.swing.JButton();
         DateOfBirth = new javax.swing.JTextField();
         StreetAddr = new javax.swing.JTextField();
         City = new javax.swing.JTextField();
@@ -96,6 +97,12 @@ public class Employees extends javax.swing.JDialog {
         Email = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         StartDate = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        EndDate = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        EmpType = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         contactPanel = new javax.swing.JPanel();
         nicknameLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
@@ -105,6 +112,13 @@ public class Employees extends javax.swing.JDialog {
         NameOnCard = new javax.swing.JTextField();
         DateOfPayment = new javax.swing.JTextField();
         TotalPayment = new javax.swing.JTextField();
+
+        NewTrainerProgram.setText("New Trainer Program");
+        NewTrainerProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewTrainerProgramActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -177,13 +191,6 @@ public class Employees extends javax.swing.JDialog {
             }
         });
 
-        NewTrainerProgram.setText("New Trainer Program");
-        NewTrainerProgram.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewTrainerProgramActionPerformed(evt);
-            }
-        });
-
         DateOfBirth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DateOfBirthActionPerformed(evt);
@@ -234,6 +241,18 @@ public class Employees extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setText("End Date:");
+
+        EndDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EndDateActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Type:");
+
+        jLabel8.setText("Hourly Pay:");
+
         javax.swing.GroupLayout personalPanelLayout = new javax.swing.GroupLayout(personalPanel);
         personalPanel.setLayout(personalPanelLayout);
         personalPanelLayout.setHorizontalGroup(
@@ -242,43 +261,61 @@ public class Employees extends javax.swing.JDialog {
                 .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personalPanelLayout.createSequentialGroup()
                         .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(NewTrainerProgram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(personalPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstNameLabel)
-                            .addComponent(surnameLabel)
-                            .addComponent(maritalStatusLabel)
-                            .addComponent(sexLabel)
-                            .addComponent(ageLabel)
-                            .addComponent(sexLabel1)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(6, 6, 6)
-                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstName, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LastName)
-                            .addComponent(StreetAddr)
-                            .addComponent(City)
-                            .addComponent(State)
-                            .addComponent(Zip)
-                            .addComponent(PhoneNumber)
-                            .addComponent(Email)
                             .addGroup(personalPanelLayout.createSequentialGroup()
                                 .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(firstNameLabel)
+                                    .addComponent(surnameLabel)
+                                    .addComponent(maritalStatusLabel)
+                                    .addComponent(sexLabel)
+                                    .addComponent(ageLabel)
+                                    .addComponent(sexLabel1)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(6, 6, 6)
+                                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(State, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(firstName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                                    .addComponent(LastName)
+                                    .addComponent(StreetAddr)
+                                    .addComponent(City)
                                     .addGroup(personalPanelLayout.createSequentialGroup()
-                                        .addComponent(maleRadioButton)
+                                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(personalPanelLayout.createSequentialGroup()
+                                                .addComponent(maleRadioButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(femaleRadioButton))
+                                            .addComponent(DateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(Zip)))
+                            .addGroup(personalPanelLayout.createSequentialGroup()
+                                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(personalPanelLayout.createSequentialGroup()
+                                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(StartDate, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                            .addComponent(EmpType))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel8))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(femaleRadioButton))
-                                    .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(personalPanelLayout.createSequentialGroup()
+                                                .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(jTextField1)))
+                                    .addComponent(Email, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(PhoneNumber))))))
                 .addContainerGap())
         );
         personalPanelLayout.setVerticalGroup(
@@ -325,15 +362,24 @@ public class Employees extends javax.swing.JDialog {
                 .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(EmpType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SaveButton)
-                    .addComponent(CancelButton)
-                    .addComponent(NewTrainerProgram))
+                    .addComponent(CancelButton))
                 .addGap(24, 24, 24))
         );
 
@@ -387,7 +433,7 @@ public class Employees extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CardNumber)
-                    .addComponent(NameOnCard, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(NameOnCard, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addComponent(DateOfPayment)
                     .addComponent(TotalPayment))
                 .addContainerGap())
@@ -411,10 +457,10 @@ public class Employees extends javax.swing.JDialog {
                 .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imLabel)
                     .addComponent(TotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        clientInfoPane.addTab("Payment Info", contactPanel);
+        clientInfoPane.addTab("Type", contactPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -435,8 +481,9 @@ public class Employees extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clientInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(clientInfoPane))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(clientInfoPane, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -510,7 +557,6 @@ public class Employees extends javax.swing.JDialog {
         if (LastName.getText() == null) {
             JOptionPane.showMessageDialog(null, "Please enter a Last Name");
         }
-
         String street = StreetAddr.getText();
         client.setStreet(street);
         if (client.getStreet() == null) {
@@ -549,7 +595,7 @@ public class Employees extends javax.swing.JDialog {
             && client.getPhone() != null && Email.getText() != null){
             JOptionPane.showMessageDialog(null,"Welcome to Fitness 21 " +fname+" "+lname);
         }
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
@@ -562,7 +608,7 @@ public class Employees extends javax.swing.JDialog {
         are we going to have to set everything to NULL or will it
         just not save it.
         */
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void DateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfBirthActionPerformed
@@ -732,6 +778,10 @@ public class Employees extends javax.swing.JDialog {
         */
     }//GEN-LAST:event_NewTrainerProgramActionPerformed
 
+    private void EndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EndDateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -782,6 +832,8 @@ public class Employees extends javax.swing.JDialog {
     private javax.swing.JTextField DateOfBirth;
     private javax.swing.JTextField DateOfPayment;
     private javax.swing.JTextField Email;
+    private javax.swing.JTextField EmpType;
+    private javax.swing.JTextField EndDate;
     private javax.swing.JTextField LastName;
     private javax.swing.JTextField NameOnCard;
     private javax.swing.JButton NewTrainerProgram;
@@ -793,6 +845,7 @@ public class Employees extends javax.swing.JDialog {
     private javax.swing.JTextField TotalPayment;
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ageLabel;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel clientInfoLabel;
     private javax.swing.JTabbedPane clientInfoPane;
     private javax.swing.JPanel contactPanel;
@@ -806,6 +859,10 @@ public class Employees extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton maleRadioButton;
     private javax.swing.JLabel maritalStatusLabel;
     private javax.swing.JLabel nicknameLabel;

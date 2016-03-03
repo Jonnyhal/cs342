@@ -29,17 +29,29 @@ public class AccessDelphiDB {
    }
     
    public static void main(String argv[]) {
+       char c = ' ';
        String sql;
        
        AccessDelphiDB ex3 = new AccessDelphiDB( user, passwd);
-       
+       ex3.finalize();
    }
    void executeSQL(String sql) {
-       
-   }
-   
-   protected void finalize() {
-       
+       try {
+            if ( sql.charAt(sql.length() -1) == ';' ) sql = sql.substring(0, sql.length() -1);
+          res = stmt.executeQuery(sql);
+         } catch (SQLException e) { System.err.println("\nError occured in execu    ting SQL: \n\t" + sql + "\n"); }
    }
 
+       
+   
+   
+   @Override
+   protected void finalize() {
+       try {
+          if ( stmt != null ) stmt.close();
+          if ( res != null ) res.close();
+          if ( cnn != null ) cnn.close();
+          System.out.println("Disconnected from database.");
+         } catch (SQLException e) {}
+      }
 }

@@ -82,43 +82,10 @@ public class Gym extends javax.swing.JPanel {
         jTree1 = new javax.swing.JTree();
         memTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        MemFirstLabel = new javax.swing.JLabel();
-        memFname = new javax.swing.JTextField();
-        memLastLabel = new javax.swing.JLabel();
-        memLname = new javax.swing.JTextField();
-        memDoblabel = new javax.swing.JLabel();
-        memDob = new javax.swing.JTextField();
-        memSexLabel = new javax.swing.JLabel();
-        memSex = new javax.swing.JTextField();
-        memAddressLabel = new javax.swing.JLabel();
-        memAddress = new javax.swing.JTextField();
-        memcitylabel = new javax.swing.JLabel();
-        memCity = new javax.swing.JTextField();
-        memStatelabel = new javax.swing.JLabel();
-        memState = new javax.swing.JTextField();
-        memZiplabel = new javax.swing.JLabel();
-        memZip = new javax.swing.JTextField();
-        memPhonelabel = new javax.swing.JLabel();
-        memPhone = new javax.swing.JTextField();
-        memEmailLabel = new javax.swing.JLabel();
-        memEmail = new javax.swing.JTextField();
-        memSDatelabel = new javax.swing.JLabel();
-        memSDate = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        memEDate = new javax.swing.JTextField();
         memUpdateButton = new javax.swing.JButton();
         memNewbutton = new javax.swing.JButton();
         memDeleteButton = new javax.swing.JButton();
-        memTrainingProg = new javax.swing.JButton();
         memSearchButton = new javax.swing.JButton();
-        memNameonCardlabel = new javax.swing.JLabel();
-        memNameonCard = new javax.swing.JTextField();
-        memCardNumberLabel = new javax.swing.JLabel();
-        memCardNumber = new javax.swing.JTextField();
-        memPayDatelabel = new javax.swing.JLabel();
-        memPayDate = new javax.swing.JTextField();
-        memPaytotallabel = new javax.swing.JLabel();
-        memPayTotal = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -126,41 +93,17 @@ public class Gym extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         MemTable3 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        MemFirstLabel1 = new javax.swing.JLabel();
-        empFname = new javax.swing.JTextField();
-        memLastLabel1 = new javax.swing.JLabel();
-        empLname = new javax.swing.JTextField();
-        memDoblabel1 = new javax.swing.JLabel();
-        empDob = new javax.swing.JTextField();
-        memSexLabel1 = new javax.swing.JLabel();
-        empSex = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        MemTable1 = new javax.swing.JTable();
-        memAddressLabel1 = new javax.swing.JLabel();
-        Address = new javax.swing.JTextField();
-        memcitylabel1 = new javax.swing.JLabel();
-        empCity = new javax.swing.JTextField();
-        memStatelabel1 = new javax.swing.JLabel();
-        empState = new javax.swing.JTextField();
-        memZiplabel1 = new javax.swing.JLabel();
-        empZip = new javax.swing.JTextField();
-        memPhonelabel1 = new javax.swing.JLabel();
-        empPhone = new javax.swing.JTextField();
-        memEmailLabel1 = new javax.swing.JLabel();
-        empSSN = new javax.swing.JTextField();
-        memSDatelabel1 = new javax.swing.JLabel();
-        empType = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        empHrlPay = new javax.swing.JTextField();
-        empUpdateButton = new javax.swing.JButton();
-        empNewbutton = new javax.swing.JButton();
-        empDeleteButton = new javax.swing.JButton();
-        empTrainingProg = new javax.swing.JButton();
-        empSearchButton = new javax.swing.JButton();
-        memNameonCardlabel1 = new javax.swing.JLabel();
-        empSDate = new javax.swing.JTextField();
-        memCardNumberLabel1 = new javax.swing.JLabel();
-        empEDate = new javax.swing.JTextField();
+        TrainingProTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        memTrainingTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        MemSearchTP = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        empTrainerTable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        MemSearchTP1 = new javax.swing.JTextField();
+        memTrainingProg = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         MemFirstLabel2 = new javax.swing.JLabel();
         equName = new javax.swing.JTextField();
@@ -187,6 +130,7 @@ public class Gym extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         reportMemEDate = new javax.swing.JTextField();
         MemJoinedReport = new javax.swing.JButton();
+        empNewbutton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         clientInfoLabel = new javax.swing.JLabel();
         clientInfoLabel1 = new javax.swing.JLabel();
@@ -196,36 +140,6 @@ public class Gym extends javax.swing.JPanel {
         validationMsgLabel.setForeground(new java.awt.Color(255, 0, 0));
 
         jScrollPane2.setViewportView(jTree1);
-
-        MemFirstLabel.setText("First Name:");
-
-        memLastLabel.setText("Last Name:");
-
-        memDoblabel.setText("Date of Birth:");
-
-        memSexLabel.setText("Sex(M/F):");
-
-        memAddressLabel.setText("Address:");
-
-        memcitylabel.setText("City:");
-
-        memStatelabel.setText("State:");
-
-        memZiplabel.setText("Zip:");
-
-        memPhonelabel.setText("Phone:");
-
-        memEmailLabel.setText("Email:");
-
-        memEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memEmailActionPerformed(evt);
-            }
-        });
-
-        memSDatelabel.setText("Start Date:");
-
-        jLabel1.setText("End Date:");
 
         memUpdateButton.setText("Update");
 
@@ -238,17 +152,7 @@ public class Gym extends javax.swing.JPanel {
 
         memDeleteButton.setText("Delete");
 
-        memTrainingProg.setText("Training Program");
-
         memSearchButton.setText("Search");
-
-        memNameonCardlabel.setText("Name on Card:");
-
-        memCardNumberLabel.setText("Card Number:");
-
-        memPayDatelabel.setText("Date of Payment:");
-
-        memPaytotallabel.setText("Payment Total:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -348,145 +252,34 @@ public class Gym extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1081, Short.MAX_VALUE)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .add(memNewbutton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(memSearchButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
-                    .add(memTrainingProg, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(memDoblabel)
-                            .add(memSexLabel))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(memDob, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .add(memSex)))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memLastLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(MemFirstLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memFname, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .add(memLname))))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(memAddressLabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, memcitylabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, memStatelabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, memZiplabel))
-                .add(2, 2, 2)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(memAddress, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .add(memCity)
-                    .add(memState)
-                    .add(memZip))
+                .add(404, 404, 404)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(memNewbutton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1)
-                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(memSDatelabel)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, memPhonelabel)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, memEmailLabel)))
-                .add(3, 3, 3)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(memEmail)
-                    .add(memPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .add(memSDate)
-                    .add(memEDate))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(memNameonCardlabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(memCardNumberLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(memPayDatelabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(memPaytotallabel))
-                .add(2, 2, 2)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(memNameonCard, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, memPayTotal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, memPayDate)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, memCardNumber)))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .add(jScrollPane7)
+                    .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(memSearchButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(18, 18, 18)
+                .add(27, 27, 27)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(memNewbutton)
+                    .add(memUpdateButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memFname, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(MemFirstLabel)
-                            .add(memAddressLabel)
-                            .add(memAddress, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memPhonelabel)
-                            .add(memPhone, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memNameonCardlabel)
-                            .add(memNameonCard, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memLname, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memLastLabel)
-                            .add(memcitylabel)
-                            .add(memCity, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memEmailLabel)
-                            .add(memCardNumberLabel)
-                            .add(memCardNumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memDoblabel)
-                            .add(memDob, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memStatelabel)
-                            .add(memState, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memSDatelabel)
-                            .add(memSDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memPayDatelabel)
-                            .add(memPayDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memSexLabel)
-                            .add(memSex, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memZiplabel)
-                            .add(memZip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel1)
-                            .add(memEDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memPaytotallabel)
-                            .add(memPayTotal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memNewbutton)
-                            .add(memUpdateButton))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(memSearchButton)
-                            .add(memDeleteButton))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(memTrainingProg)))
-                .add(12, 12, 12)
-                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                    .add(memSearchButton)
+                    .add(memDeleteButton))
+                .add(51, 51, 51)
+                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Members", jPanel1);
-
-        MemFirstLabel1.setText("First Name:");
-
-        memLastLabel1.setText("Last Name:");
-
-        memDoblabel1.setText("Date of Birth:");
-
-        memSexLabel1.setText("Sex(M/F):");
+        memTab.addTab("Front Desk", jPanel1);
 
         jScrollPane3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -494,7 +287,7 @@ public class Gym extends javax.swing.JPanel {
             }
         });
 
-        MemTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TrainingProTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -549,184 +342,108 @@ public class Gym extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        MemTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(MemTable1);
-        if (MemTable1.getColumnModel().getColumnCount() > 0) {
-            MemTable1.getColumnModel().getColumn(0).setResizable(false);
-            MemTable1.getColumnModel().getColumn(1).setResizable(false);
-            MemTable1.getColumnModel().getColumn(14).setHeaderValue("Title 15");
-            MemTable1.getColumnModel().getColumn(15).setHeaderValue("Title 16");
+        TrainingProTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(TrainingProTable);
+        if (TrainingProTable.getColumnModel().getColumnCount() > 0) {
+            TrainingProTable.getColumnModel().getColumn(0).setResizable(false);
+            TrainingProTable.getColumnModel().getColumn(1).setResizable(false);
+            TrainingProTable.getColumnModel().getColumn(14).setHeaderValue("Title 15");
+            TrainingProTable.getColumnModel().getColumn(15).setHeaderValue("Title 16");
         }
 
-        memAddressLabel1.setText("Address:");
+        memTrainingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {1, "Jonny", "Timber"},
+                {2, "Jimmy", "Gill"},
+                {3, "Jenna", "Hally"},
+                {4, "Joeseph", "Grin"}
+            },
+            new String [] {
+                "MemID", "First Name", "Last Name",
+            }
+        ));
+        jScrollPane1.setViewportView(memTrainingTable);
 
-        memcitylabel1.setText("City:");
+        jLabel2.setText("Member search:");
 
-        memStatelabel1.setText("State:");
-
-        memZiplabel1.setText("Zip:");
-
-        memPhonelabel1.setText("Phone:");
-
-        memEmailLabel1.setText("SSN:");
-
-        empSSN.addActionListener(new java.awt.event.ActionListener() {
+        MemSearchTP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empSSNActionPerformed(evt);
+                MemSearchTPActionPerformed(evt);
             }
         });
 
-        memSDatelabel1.setText("Type:");
+        empTrainerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {1, "John", "Doe"},
+                {2, "Jim", "Crackly"},
+                {3, "Peter", "Pan"},
+                {4, "Windy", "Punter"},
+                {5, "Jim", "Carrey"}
+            },
+            new String [] {
+                "EmpID", "First Name", "Last Name"
+            }
+        ));
+        jScrollPane8.setViewportView(empTrainerTable);
 
-        jLabel6.setText("Hourly Pay:");
+        jLabel3.setText("Trainer search:");
 
-        empUpdateButton.setText("Update");
-
-        empNewbutton.setText("New");
-        empNewbutton.addActionListener(new java.awt.event.ActionListener() {
+        memTrainingProg.setText("Training Program");
+        memTrainingProg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empNewbuttonActionPerformed(evt);
+                memTrainingProgActionPerformed(evt);
             }
         });
-
-        empDeleteButton.setText("Delete");
-
-        empTrainingProg.setText("Training Program");
-
-        empSearchButton.setText("Search");
-
-        memNameonCardlabel1.setText("Start Date:");
-
-        memCardNumberLabel1.setText("End Date:");
 
         org.jdesktop.layout.GroupLayout jPanel6Layout = new org.jdesktop.layout.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel6Layout.createSequentialGroup()
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel6Layout.createSequentialGroup()
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(empDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .add(empNewbutton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(empUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(empSearchButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
-                    .add(empTrainingProg, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 16, Short.MAX_VALUE)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel6Layout.createSequentialGroup()
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(memDoblabel1)
-                            .add(memSexLabel1))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(empDob, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .add(empSex)))
-                    .add(jPanel6Layout.createSequentialGroup()
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(memLastLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(MemFirstLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(empFname, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .add(empLname))))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(memAddressLabel1)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, memcitylabel1)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, memStatelabel1)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, memZiplabel1))
-                .add(2, 2, 2)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(Address, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .add(empCity)
-                    .add(empState)
-                    .add(empZip))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel6Layout.createSequentialGroup()
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel6)
-                            .add(memPhonelabel1)
-                            .add(memEmailLabel1))
-                        .add(3, 3, 3))
-                    .add(jPanel6Layout.createSequentialGroup()
-                        .add(memSDatelabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(empSSN)
-                    .add(empPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .add(empType)
-                    .add(empHrlPay))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(memNameonCardlabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .add(memCardNumberLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .add(2, 2, 2)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(empSDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(empEDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
             .add(jScrollPane3)
+            .add(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(jPanel6Layout.createSequentialGroup()
+                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(18, 18, 18)
+                        .add(MemSearchTP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(MemSearchTP1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .add(memTrainingProg, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 153, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel6Layout.createSequentialGroup()
-                .add(18, 18, 18)
                 .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel6Layout.createSequentialGroup()
+                        .add(26, 26, 26)
                         .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(empFname, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(MemFirstLabel1)
-                            .add(memAddressLabel1)
-                            .add(Address, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memPhonelabel1)
-                            .add(empPhone, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memNameonCardlabel1)
-                            .add(empSDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(empLname, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memLastLabel1)
-                            .add(memcitylabel1)
-                            .add(empCity, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(empSSN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memEmailLabel1)
-                            .add(memCardNumberLabel1)
-                            .add(empEDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memDoblabel1)
-                            .add(empDob, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memStatelabel1)
-                            .add(empState, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memSDatelabel1)
-                            .add(empType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(memSexLabel1)
-                            .add(empSex, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(memZiplabel1)
-                            .add(empZip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel6)
-                            .add(empHrlPay, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(jLabel2)
+                            .add(MemSearchTP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(MemSearchTP1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jLabel3)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .add(jPanel6Layout.createSequentialGroup()
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(empNewbutton)
-                            .add(empUpdateButton))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(empSearchButton)
-                            .add(empDeleteButton))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(empTrainingProg)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                        .add(0, 58, Short.MAX_VALUE)
+                        .add(memTrainingProg)
+                        .add(65, 65, 65))
+                    .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .add(65, 65, 65)
+                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 164, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
 
-        memTab.addTab("Employees", jPanel6);
+        memTab.addTab("Trainers", jPanel6);
 
         MemFirstLabel2.setText("Name:");
 
@@ -823,7 +540,7 @@ public class Gym extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1063, Short.MAX_VALUE)
+            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1081, Short.MAX_VALUE)
             .add(jPanel7Layout.createSequentialGroup()
                 .add(38, 38, 38)
                 .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -877,10 +594,10 @@ public class Gym extends javax.swing.JPanel {
                             .add(equRepair, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(memSexLabel2))))
                 .add(18, 18, 18)
-                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Equipment", jPanel7);
+        memTab.addTab("Maintenance", jPanel7);
 
         jLabel12.setText("Create a report for Gyms income from Starting Date:");
 
@@ -900,6 +617,13 @@ public class Gym extends javax.swing.JPanel {
 
         MemJoinedReport.setText("Create Report");
 
+        empNewbutton.setText("New");
+        empNewbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empNewbuttonActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel9Layout = new org.jdesktop.layout.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -907,30 +631,35 @@ public class Gym extends javax.swing.JPanel {
             .add(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .add(jLabel12)
-                        .add(111, 111, 111))
                     .add(jPanel9Layout.createSequentialGroup()
-                        .add(jLabel14)
-                        .add(31, 31, 31)))
-                .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(IncomeSDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .add(reportMemSDate))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel9Layout.createSequentialGroup()
-                        .add(jLabel13)
+                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .add(jLabel12)
+                                .add(111, 111, 111))
+                            .add(jPanel9Layout.createSequentialGroup()
+                                .add(jLabel14)
+                                .add(31, 31, 31)))
+                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(IncomeSDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .add(reportMemSDate))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(IncomeEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jPanel9Layout.createSequentialGroup()
+                                .add(jLabel13)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(IncomeEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                            .add(jPanel9Layout.createSequentialGroup()
+                                .add(jLabel15)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(reportMemEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(incomeReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                            .add(MemJoinedReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(64, 64, 64))
                     .add(jPanel9Layout.createSequentialGroup()
-                        .add(jLabel15)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(reportMemEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(incomeReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                    .add(MemJoinedReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .add(64, 64, 64))
+                        .add(empNewbutton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -950,10 +679,12 @@ public class Gym extends javax.swing.JPanel {
                         .add(reportMemEDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(MemJoinedReport))
                     .add(jLabel14))
-                .addContainerGap(319, Short.MAX_VALUE))
+                .add(25, 25, 25)
+                .add(empNewbutton)
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
-        memTab.addTab("Reports", jPanel9);
+        memTab.addTab("Manager", jPanel9);
 
         clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         clientInfoLabel.setText("                    R.E.P.S"); // NOI18N
@@ -972,16 +703,16 @@ public class Gym extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(286, 286, 286)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(clientInfoLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanel2Layout.createSequentialGroup()
                         .add(clientInfoLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(350, 350, 350)
-                        .add(QuitButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .add(QuitButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .add(clientInfoLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 761, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1021,19 +752,6 @@ public class Gym extends javax.swing.JPanel {
         System.exit(0);
     }//GEN-LAST:event_QuitButtonActionPerformed
 
-    private void memEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_memEmailActionPerformed
-
-    private void jScrollPane3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MousePressed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jScrollPane3MousePressed
-
-    private void empSSNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empSSNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_empSSNActionPerformed
-
     private void jScrollPane4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane4MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane4MousePressed
@@ -1057,6 +775,22 @@ public class Gym extends javax.swing.JPanel {
         Employees emp = new Employees(new javax.swing.JFrame(), true);
         emp.setVisible(true);
     }//GEN-LAST:event_empNewbuttonActionPerformed
+
+    private void jScrollPane3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MousePressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jScrollPane3MousePressed
+
+    private void memTrainingProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memTrainingProgActionPerformed
+        // TODO add your handling code here:
+        Training training = new Training(new javax.swing.JFrame(), true);
+        training.setVisible(true);
+    }//GEN-LAST:event_memTrainingProgActionPerformed
+
+    private void MemSearchTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemSearchTPActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_MemSearchTPActionPerformed
     
     /**
      //* @param args the command line arguments
@@ -1138,37 +872,20 @@ public class Gym extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Address;
     private javax.swing.JTextField IncomeEDate;
     private javax.swing.JTextField IncomeSDate;
-    private javax.swing.JLabel MemFirstLabel;
-    private javax.swing.JLabel MemFirstLabel1;
     private javax.swing.JLabel MemFirstLabel2;
     private javax.swing.JButton MemJoinedReport;
-    private javax.swing.JTable MemTable1;
+    private javax.swing.JTextField MemSearchTP;
+    private javax.swing.JTextField MemSearchTP1;
     private javax.swing.JTable MemTable2;
     private javax.swing.JTable MemTable3;
     private javax.swing.JButton QuitButton;
+    private javax.swing.JTable TrainingProTable;
     private javax.swing.JLabel clientInfoLabel;
     private javax.swing.JLabel clientInfoLabel1;
-    private javax.swing.JTextField empCity;
-    private javax.swing.JButton empDeleteButton;
-    private javax.swing.JTextField empDob;
-    private javax.swing.JTextField empEDate;
-    private javax.swing.JTextField empFname;
-    private javax.swing.JTextField empHrlPay;
-    private javax.swing.JTextField empLname;
     private javax.swing.JButton empNewbutton;
-    private javax.swing.JTextField empPhone;
-    private javax.swing.JTextField empSDate;
-    private javax.swing.JTextField empSSN;
-    private javax.swing.JButton empSearchButton;
-    private javax.swing.JTextField empSex;
-    private javax.swing.JTextField empState;
-    private javax.swing.JButton empTrainingProg;
-    private javax.swing.JTextField empType;
-    private javax.swing.JButton empUpdateButton;
-    private javax.swing.JTextField empZip;
+    private javax.swing.JTable empTrainerTable;
     private javax.swing.JTextField equCost;
     private javax.swing.JButton equDelete;
     private javax.swing.JTextField equManu;
@@ -1178,77 +895,38 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JButton equSave;
     private javax.swing.JButton equSearch;
     private javax.swing.JButton incomeReport;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTree jTree1;
-    private javax.swing.JTextField memAddress;
-    private javax.swing.JLabel memAddressLabel;
-    private javax.swing.JLabel memAddressLabel1;
-    private javax.swing.JTextField memCardNumber;
-    private javax.swing.JLabel memCardNumberLabel;
-    private javax.swing.JLabel memCardNumberLabel1;
-    private javax.swing.JTextField memCity;
     private javax.swing.JButton memDeleteButton;
-    private javax.swing.JTextField memDob;
-    private javax.swing.JLabel memDoblabel;
-    private javax.swing.JLabel memDoblabel1;
     private javax.swing.JLabel memDoblabel2;
-    private javax.swing.JTextField memEDate;
-    private javax.swing.JTextField memEmail;
-    private javax.swing.JLabel memEmailLabel;
-    private javax.swing.JLabel memEmailLabel1;
-    private javax.swing.JTextField memFname;
-    private javax.swing.JLabel memLastLabel;
-    private javax.swing.JLabel memLastLabel1;
     private javax.swing.JLabel memLastLabel2;
-    private javax.swing.JTextField memLname;
-    private javax.swing.JTextField memNameonCard;
-    private javax.swing.JLabel memNameonCardlabel;
-    private javax.swing.JLabel memNameonCardlabel1;
     private javax.swing.JButton memNewbutton;
-    private javax.swing.JTextField memPayDate;
-    private javax.swing.JLabel memPayDatelabel;
-    private javax.swing.JTextField memPayTotal;
-    private javax.swing.JLabel memPaytotallabel;
-    private javax.swing.JTextField memPhone;
-    private javax.swing.JLabel memPhonelabel;
-    private javax.swing.JLabel memPhonelabel1;
-    private javax.swing.JTextField memSDate;
-    private javax.swing.JLabel memSDatelabel;
-    private javax.swing.JLabel memSDatelabel1;
     private javax.swing.JButton memSearchButton;
-    private javax.swing.JTextField memSex;
-    private javax.swing.JLabel memSexLabel;
-    private javax.swing.JLabel memSexLabel1;
     private javax.swing.JLabel memSexLabel2;
-    private javax.swing.JTextField memState;
-    private javax.swing.JLabel memStatelabel;
-    private javax.swing.JLabel memStatelabel1;
     private javax.swing.JTabbedPane memTab;
     private javax.swing.JButton memTrainingProg;
+    private javax.swing.JTable memTrainingTable;
     private javax.swing.JButton memUpdateButton;
-    private javax.swing.JTextField memZip;
-    private javax.swing.JLabel memZiplabel;
-    private javax.swing.JLabel memZiplabel1;
-    private javax.swing.JLabel memcitylabel;
-    private javax.swing.JLabel memcitylabel1;
     private javax.swing.JTextField reportMemEDate;
     private javax.swing.JTextField reportMemSDate;
     private javax.swing.ButtonGroup sexButtonGroup;
