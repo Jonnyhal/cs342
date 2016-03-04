@@ -25,6 +25,29 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.persistence.EntityManager" name="entityManager0">
+      <Properties>
+        <Property name="persistenceUnit" type="java.lang.String" value="jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01PU"/>
+      </Properties>
+    </Component>
+    <Component class="javax.persistence.Query" name="bMembersQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT b FROM BMembers b"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="entityManager0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="bMembersList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="bMembersQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;clienteditor.BMembers&gt;"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -79,7 +102,6 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane7" alignment="0" pref="1081" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="404" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -91,8 +113,9 @@
                           <Component id="memUpdateButton" max="32767" attributes="0"/>
                           <Component id="memSearchButton" min="-2" pref="73" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="525" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -108,8 +131,9 @@
                           <Component id="memSearchButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="memDeleteButton" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="jScrollPane7" pref="292" max="32767" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                      <Component id="jScrollPane9" min="-2" pref="365" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -180,60 +204,17 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane7">
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jScrollPane7MousePressed"/>
-              </Events>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="MemTable3">
+                <Component class="javax.swing.JTable" name="MemTable">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="14" rowCount="33">
-                        <Column editable="false" title="Mem ID" type="java.lang.Integer"/>
-                        <Column editable="false" title="Title 2" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 5" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 6" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 7" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 8" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 9" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 10" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 11" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 12" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 13" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 14" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -282,9 +263,52 @@
                       </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <BindingProperties>
+                    <BindingProperty name="elements" source="bMembersList" target="MemTable" targetPath="elements" updateStrategy="0" immediately="true">
+                      <Subbinding sourcePath="${memid}">
+                        <BindingParameter name="NAME" value="Memid"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${fname}">
+                        <BindingParameter name="NAME" value="Fname"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${lname}">
+                        <BindingParameter name="NAME" value="Lname"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${sdate}">
+                        <BindingParameter name="NAME" value="Sdate"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${address}">
+                        <BindingParameter name="NAME" value="Address"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${city}">
+                        <BindingParameter name="NAME" value="City"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${state}">
+                        <BindingParameter name="NAME" value="State"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${zip}">
+                        <BindingParameter name="NAME" value="Zip"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${dob}">
+                        <BindingParameter name="NAME" value="Dob"/>
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                      </Subbinding>
+                    </BindingProperty>
+                  </BindingProperties>
+                  <Events>
+                    <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="MemTableComponentAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -349,7 +373,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="58" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="159" max="32767" attributes="0"/>
                               <Component id="memTrainingProg" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           </Group>
@@ -491,9 +515,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="memTrainingTable">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {1, &quot;Jonny&quot;, &quot;Timber&quot;},&#xa;        {2, &quot;Jimmy&quot;, &quot;Gill&quot;},&#xa;        {3, &quot;Jenna&quot;, &quot;Hally&quot;},&#xa;        {4, &quot;Joeseph&quot;, &quot;Grin&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;MemID&quot;, &quot;First Name&quot;, &quot;Last Name&quot;, &#xa;    }&#xa;)" type="code"/>
-                    </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0"/>
                     </Property>
@@ -501,6 +522,19 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <BindingProperties>
+                    <BindingProperty name="elements" source="bMembersList" target="memTrainingTable" targetPath="elements" updateStrategy="0" immediately="true">
+                      <Subbinding sourcePath="${memid}">
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${fname}">
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                      <Subbinding sourcePath="${lname}">
+                        <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                      </Subbinding>
+                    </BindingProperty>
+                  </BindingProperties>
                 </Component>
               </SubComponents>
             </Container>
@@ -523,27 +557,8 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="empTrainerTable">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {1, &quot;John&quot;, &quot;Doe&quot;},&#xa;        {2, &quot;Jim&quot;, &quot;Crackly&quot;},&#xa;        {3, &quot;Peter&quot;, &quot;Pan&quot;},&#xa;        {4, &quot;Windy&quot;, &quot;Punter&quot;},&#xa;        {5, &quot;Jim&quot;, &quot;Carrey&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;EmpID&quot;, &quot;First Name&quot;, &quot;Last Name&quot;&#xa;    }&#xa;)" type="code"/>
-                    </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
+                      <TableColumnModel selectionModel="0"/>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -650,7 +665,7 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="288" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="389" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -841,7 +856,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="empNewbutton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="283" max="32767" attributes="0"/>
+                      <EmptySpace pref="384" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

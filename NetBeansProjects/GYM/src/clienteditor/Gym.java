@@ -68,6 +68,11 @@ public class Gym extends javax.swing.JPanel {
         firePropertyChange("client", oldClient, client);
     }
 
+    /**
+     *
+     * @return
+     */
+   
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -75,11 +80,15 @@ public class Gym extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         sexButtonGroup = new javax.swing.ButtonGroup();
         validationMsgLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        entityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01PU").createEntityManager();
+        bMembersQuery = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM BMembers b");
+        bMembersList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bMembersQuery.getResultList();
         memTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         memUpdateButton = new javax.swing.JButton();
@@ -90,8 +99,8 @@ public class Gym extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        MemTable3 = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        MemTable = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TrainingProTable = new javax.swing.JTable();
@@ -180,79 +189,47 @@ public class Gym extends javax.swing.JPanel {
         ));
         jScrollPane6.setViewportView(jTable2);
 
-        jScrollPane7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jScrollPane7MousePressed(evt);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bMembersList, MemTable);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${memid}"));
+        columnBinding.setColumnName("Memid");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fname}"));
+        columnBinding.setColumnName("Fname");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lname}"));
+        columnBinding.setColumnName("Lname");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sdate}"));
+        columnBinding.setColumnName("Sdate");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${address}"));
+        columnBinding.setColumnName("Address");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${city}"));
+        columnBinding.setColumnName("City");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${state}"));
+        columnBinding.setColumnName("State");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${zip}"));
+        columnBinding.setColumnName("Zip");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dob}"));
+        columnBinding.setColumnName("Dob");
+        columnBinding.setColumnClass(java.util.Date.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        MemTable.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                MemTableComponentAdded(evt);
             }
         });
-
-        MemTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mem ID", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        MemTable3.getTableHeader().setReorderingAllowed(false);
-        jScrollPane7.setViewportView(MemTable3);
-        if (MemTable3.getColumnModel().getColumnCount() > 0) {
-            MemTable3.getColumnModel().getColumn(0).setResizable(false);
-            MemTable3.getColumnModel().getColumn(1).setResizable(false);
-        }
+        jScrollPane9.setViewportView(MemTable);
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1081, Short.MAX_VALUE)
             .add(jPanel1Layout.createSequentialGroup()
                 .add(404, 404, 404)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
@@ -262,7 +239,8 @@ public class Gym extends javax.swing.JPanel {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(memSearchButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(525, Short.MAX_VALUE))
+            .add(jScrollPane9)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -275,8 +253,9 @@ public class Gym extends javax.swing.JPanel {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(memSearchButton)
                     .add(memDeleteButton))
-                .add(51, 51, 51)
-                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 67, Short.MAX_VALUE)
+                .add(jScrollPane9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 365, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         memTab.addTab("Front Desk", jPanel1);
@@ -351,17 +330,18 @@ public class Gym extends javax.swing.JPanel {
             TrainingProTable.getColumnModel().getColumn(15).setHeaderValue("Title 16");
         }
 
-        memTrainingTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {1, "Jonny", "Timber"},
-                {2, "Jimmy", "Gill"},
-                {3, "Jenna", "Hally"},
-                {4, "Joeseph", "Grin"}
-            },
-            new String [] {
-                "MemID", "First Name", "Last Name",
-            }
-        ));
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bMembersList, memTrainingTable);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${memid}"));
+        columnBinding.setColumnName("Memid");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fname}"));
+        columnBinding.setColumnName("Fname");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lname}"));
+        columnBinding.setColumnName("Lname");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane1.setViewportView(memTrainingTable);
 
         jLabel2.setText("Member search:");
@@ -372,18 +352,6 @@ public class Gym extends javax.swing.JPanel {
             }
         });
 
-        empTrainerTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {1, "John", "Doe"},
-                {2, "Jim", "Crackly"},
-                {3, "Peter", "Pan"},
-                {4, "Windy", "Punter"},
-                {5, "Jim", "Carrey"}
-            },
-            new String [] {
-                "EmpID", "First Name", "Last Name"
-            }
-        ));
         jScrollPane8.setViewportView(empTrainerTable);
 
         jLabel3.setText("Trainer search:");
@@ -435,7 +403,7 @@ public class Gym extends javax.swing.JPanel {
                 .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .add(jPanel6Layout.createSequentialGroup()
-                        .add(0, 58, Short.MAX_VALUE)
+                        .add(0, 159, Short.MAX_VALUE)
                         .add(memTrainingProg)
                         .add(65, 65, 65))
                     .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -594,7 +562,7 @@ public class Gym extends javax.swing.JPanel {
                             .add(equRepair, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(memSexLabel2))))
                 .add(18, 18, 18)
-                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
         );
 
         memTab.addTab("Maintenance", jPanel7);
@@ -681,7 +649,7 @@ public class Gym extends javax.swing.JPanel {
                     .add(jLabel14))
                 .add(25, 25, 25)
                 .add(empNewbutton)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
 
         memTab.addTab("Manager", jPanel9);
@@ -745,6 +713,8 @@ public class Gym extends javax.swing.JPanel {
                 .add(memTab)
                 .addContainerGap())
         );
+
+        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
     private void QuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitButtonActionPerformed
@@ -759,10 +729,6 @@ public class Gym extends javax.swing.JPanel {
     private void IncomeEDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncomeEDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IncomeEDateActionPerformed
-
-    private void jScrollPane7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane7MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane7MousePressed
 
     private void memNewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memNewbuttonActionPerformed
         // TODO add your handling code here:
@@ -791,6 +757,10 @@ public class Gym extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_MemSearchTPActionPerformed
+
+    private void MemTableComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_MemTableComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MemTableComponentAdded
     
     /**
      //* @param args the command line arguments
@@ -878,14 +848,17 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JButton MemJoinedReport;
     private javax.swing.JTextField MemSearchTP;
     private javax.swing.JTextField MemSearchTP1;
+    private javax.swing.JTable MemTable;
     private javax.swing.JTable MemTable2;
-    private javax.swing.JTable MemTable3;
     private javax.swing.JButton QuitButton;
     private javax.swing.JTable TrainingProTable;
+    private java.util.List<clienteditor.BMembers> bMembersList;
+    private javax.persistence.Query bMembersQuery;
     private javax.swing.JLabel clientInfoLabel;
     private javax.swing.JLabel clientInfoLabel1;
     private javax.swing.JButton empNewbutton;
     private javax.swing.JTable empTrainerTable;
+    private javax.persistence.EntityManager entityManager0;
     private javax.swing.JTextField equCost;
     private javax.swing.JButton equDelete;
     private javax.swing.JTextField equManu;
@@ -912,8 +885,8 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTree jTree1;
@@ -931,6 +904,7 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JTextField reportMemSDate;
     private javax.swing.ButtonGroup sexButtonGroup;
     private javax.swing.JLabel validationMsgLabel;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
     
 }
