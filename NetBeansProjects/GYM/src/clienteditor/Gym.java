@@ -28,10 +28,12 @@
  */
 
 package clienteditor;
+import static clienteditor.AccessDelphiDB.*;
+import static clienteditor.AccessDelphiDB.url;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
-import java.text.*;
+import net.proteanit.sql.DbUtils;
 /**
  * Form that allows editing of information about one client.
  *
@@ -42,12 +44,153 @@ import java.text.*;
 
 public class Gym extends javax.swing.JPanel {
     private Client client = Client.createClient();
+    static Connection cnn;
+    Vector selectedCells = new Vector<int[]>();
 
     public Gym() {
         initComponents();
         //bindingGroup.addBindingListener(new LoggingBindingListener(validationMsgLabel));
+        updateMemTable();
+        updateMem2Table();
+        updateTrainerProTable();
+        trainerTable();
+        updateEmployeeTable();
+        updateEmpTrainerTable();
     }
+    private void trainerTable() {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select b from b_employee b where b.etype = 'Trainer'";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            empTrainerTable.setModel(DbUtils.resultSetToTableModel(rs));
 
+        } catch (Exception e){
+        }
+    }
+    static public void updateMemTable() {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select * from b_members";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            MemTable.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e){
+        }
+    }
+    static public void updateMem2Table() {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select b.memid, b.fname, b.lname from b_members b";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            memTrainingTable.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e){
+        }
+    }
+    static public void updateTrainerProTable() {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select * from b_mixedtp";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            TPTable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e){
+        }
+    }
+    static public void updateEmployeeTable() {
+      try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select * from b_employee";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            empTable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e){
+        }  
+    }
+     static public void updateEmpTrainerTable() {
+      try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select e.empid,e.efname,e.elname,e.etype from b_employee e where e.etype = 'Trainer'";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            empTrainerTable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e){
+        }  
+    }
+    static public void memTrainSelect(int proid, String sdate, String edate) {
+        
+        try {
+            int selectedRow = memTrainingTable.getSelectedRow();
+            int memid = Integer.parseInt( MemTable.getValueAt(selectedRow, 0).toString());
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "insert into b_trains values("+memid+","+proid+",to_date('"+sdate+"', 'mm/dd/yyyy'),to_date('"+edate+"', 'mm/dd/yyyy'))";
+            db.executeSQL(sql);
+        } catch (Exception e) {
+        }
+        
+    }
+    static public void empTrainSelect(int proid, String sdate) {
+        int selectedRow = empTrainerTable.getSelectedRow();
+        int empid = Integer.parseInt( empTrainerTable.getValueAt(selectedRow, 0).toString());
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "insert into b_makes values("+empid+","+proid+",to_date('"+sdate+"', 'mm/dd/yyyy'))";
+            db.executeSQL(sql);
+        } catch (Exception e) {
+        }
+    }
+    
     /**
      * Returns <code>Client</code> being edited.
      * 
@@ -56,7 +199,8 @@ public class Gym extends javax.swing.JPanel {
     public Client getClient() {
         return client;
     }
-
+       
+    
     /** 
      * Sets client to edit.
      * 
@@ -87,8 +231,16 @@ public class Gym extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         entityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01PU").createEntityManager();
-        bMembersQuery = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM BMembers b");
+        bMembersQuery = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM B_Members b");
         bMembersList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bMembersQuery.getResultList();
+        b_MembersQuery = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM B_Members b");
+        b_MembersList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : b_MembersQuery.getResultList();
+        b_EmployeeQuery = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM B_Employee b");
+        b_EmployeeList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : b_EmployeeQuery.getResultList();
+        b_MembersQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM B_Members b");
+        b_MembersList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : b_MembersQuery1.getResultList();
+        b_MembersQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT b FROM B_Members b");
+        b_MembersList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : b_MembersQuery2.getResultList();
         memTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         memUpdateButton = new javax.swing.JButton();
@@ -102,8 +254,6 @@ public class Gym extends javax.swing.JPanel {
         jScrollPane9 = new javax.swing.JScrollPane();
         MemTable = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TrainingProTable = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         memTrainingTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -113,6 +263,8 @@ public class Gym extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         MemSearchTP1 = new javax.swing.JTextField();
         memTrainingProg = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TPTable = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         MemFirstLabel2 = new javax.swing.JLabel();
         equName = new javax.swing.JTextField();
@@ -140,6 +292,8 @@ public class Gym extends javax.swing.JPanel {
         reportMemEDate = new javax.swing.JTextField();
         MemJoinedReport = new javax.swing.JButton();
         empNewbutton = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        empTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         clientInfoLabel = new javax.swing.JLabel();
         clientInfoLabel1 = new javax.swing.JLabel();
@@ -151,6 +305,11 @@ public class Gym extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTree1);
 
         memUpdateButton.setText("Update");
+        memUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memUpdateButtonActionPerformed(evt);
+            }
+        });
 
         memNewbutton.setText("New");
         memNewbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +348,7 @@ public class Gym extends javax.swing.JPanel {
         ));
         jScrollPane6.setViewportView(jTable2);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bMembersList, MemTable);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, b_MembersList, MemTable);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${memid}"));
         columnBinding.setColumnName("Memid");
         columnBinding.setColumnClass(Integer.class);
@@ -199,9 +358,6 @@ public class Gym extends javax.swing.JPanel {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lname}"));
         columnBinding.setColumnName("Lname");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sdate}"));
-        columnBinding.setColumnName("Sdate");
-        columnBinding.setColumnClass(java.util.Date.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${address}"));
         columnBinding.setColumnName("Address");
         columnBinding.setColumnClass(String.class);
@@ -217,11 +373,25 @@ public class Gym extends javax.swing.JPanel {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dob}"));
         columnBinding.setColumnName("Dob");
         columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sex}"));
+        columnBinding.setColumnName("Sex");
+        columnBinding.setColumnClass(Character.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${phone}"));
+        columnBinding.setColumnName("Phone");
+        columnBinding.setColumnClass(Long.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sdate}"));
+        columnBinding.setColumnName("Sdate");
+        columnBinding.setColumnClass(java.util.Date.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         MemTable.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 MemTableComponentAdded(evt);
+            }
+        });
+        MemTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MemTableMouseClicked(evt);
             }
         });
         jScrollPane9.setViewportView(MemTable);
@@ -230,8 +400,9 @@ public class Gym extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jScrollPane9)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(404, 404, 404)
+                .add(495, 495, 495)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                     .add(memDeleteButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(memNewbutton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -239,13 +410,12 @@ public class Gym extends javax.swing.JPanel {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(memUpdateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(memSearchButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(525, Short.MAX_VALUE))
-            .add(jScrollPane9)
+                .addContainerGap(495, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(27, 27, 27)
+                .add(43, 43, 43)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(memNewbutton)
                     .add(memUpdateButton))
@@ -253,84 +423,14 @@ public class Gym extends javax.swing.JPanel {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(memSearchButton)
                     .add(memDeleteButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 28, Short.MAX_VALUE)
                 .add(jScrollPane9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 365, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         memTab.addTab("Front Desk", jPanel1);
 
-        jScrollPane3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jScrollPane3MousePressed(evt);
-            }
-        });
-
-        TrainingProTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Emp ID", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14", "Title 15", "Title 16"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TrainingProTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(TrainingProTable);
-        if (TrainingProTable.getColumnModel().getColumnCount() > 0) {
-            TrainingProTable.getColumnModel().getColumn(0).setResizable(false);
-            TrainingProTable.getColumnModel().getColumn(1).setResizable(false);
-            TrainingProTable.getColumnModel().getColumn(14).setHeaderValue("Title 15");
-            TrainingProTable.getColumnModel().getColumn(15).setHeaderValue("Title 16");
-        }
-
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bMembersList, memTrainingTable);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, b_MembersList1, memTrainingTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${memid}"));
         columnBinding.setColumnName("Memid");
         columnBinding.setColumnClass(Integer.class);
@@ -342,6 +442,11 @@ public class Gym extends javax.swing.JPanel {
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
+        memTrainingTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                memTrainingTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(memTrainingTable);
 
         jLabel2.setText("Member search:");
@@ -352,6 +457,26 @@ public class Gym extends javax.swing.JPanel {
             }
         });
 
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, b_EmployeeList, empTrainerTable);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${empid}"));
+        columnBinding.setColumnName("Empid");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${efname}"));
+        columnBinding.setColumnName("Efname");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${elname}"));
+        columnBinding.setColumnName("Elname");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${etype}"));
+        columnBinding.setColumnName("Etype");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        empTrainerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                empTrainerTableMouseClicked(evt);
+            }
+        });
         jScrollPane8.setViewportView(empTrainerTable);
 
         jLabel3.setText("Trainer search:");
@@ -363,29 +488,46 @@ public class Gym extends javax.swing.JPanel {
             }
         });
 
+        TPTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(TPTable);
+
         org.jdesktop.layout.GroupLayout jPanel6Layout = new org.jdesktop.layout.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3)
             .add(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPane3)
                     .add(jPanel6Layout.createSequentialGroup()
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(18, 18, 18)
-                        .add(MemSearchTP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(MemSearchTP1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .add(memTrainingProg, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 153, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel6Layout.createSequentialGroup()
+                                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(MemSearchTP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(24, 24, 24)
+                                .add(memTrainingProg, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 23, Short.MAX_VALUE))
+                            .add(jPanel6Layout.createSequentialGroup()
+                                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(122, 122, 122)))
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jPanel6Layout.createSequentialGroup()
+                                .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(MemSearchTP1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -396,19 +538,21 @@ public class Gym extends javax.swing.JPanel {
                         .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel2)
                             .add(MemSearchTP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(MemSearchTP1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jLabel3)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .add(31, 31, 31)
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel3)
+                            .add(MemSearchTP1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .add(jPanel6Layout.createSequentialGroup()
-                        .add(0, 159, Short.MAX_VALUE)
-                        .add(memTrainingProg)
-                        .add(65, 65, 65))
-                    .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .add(65, 65, 65)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 164, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(0, 188, Short.MAX_VALUE)
+                        .add(memTrainingProg))
+                    .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .add(38, 38, 38)
+                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 187, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         memTab.addTab("Trainers", jPanel6);
@@ -508,7 +652,7 @@ public class Gym extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1081, Short.MAX_VALUE)
+            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1142, Short.MAX_VALUE)
             .add(jPanel7Layout.createSequentialGroup()
                 .add(38, 38, 38)
                 .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -562,7 +706,7 @@ public class Gym extends javax.swing.JPanel {
                             .add(equRepair, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(memSexLabel2))))
                 .add(18, 18, 18)
-                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
+                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
         );
 
         memTab.addTab("Maintenance", jPanel7);
@@ -592,6 +736,19 @@ public class Gym extends javax.swing.JPanel {
             }
         });
 
+        empTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(empTable);
+
         org.jdesktop.layout.GroupLayout jPanel9Layout = new org.jdesktop.layout.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -599,6 +756,9 @@ public class Gym extends javax.swing.JPanel {
             .add(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel9Layout.createSequentialGroup()
+                        .add(jScrollPane7)
+                        .addContainerGap())
                     .add(jPanel9Layout.createSequentialGroup()
                         .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
@@ -620,7 +780,7 @@ public class Gym extends javax.swing.JPanel {
                                 .add(jLabel15)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(reportMemEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 85, Short.MAX_VALUE)
                         .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(incomeReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                             .add(MemJoinedReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -649,7 +809,9 @@ public class Gym extends javax.swing.JPanel {
                     .add(jLabel14))
                 .add(25, 25, 25)
                 .add(empNewbutton)
-                .addContainerGap(384, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 142, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         memTab.addTab("Manager", jPanel9);
@@ -710,7 +872,7 @@ public class Gym extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(memTab)
+                .add(memTab, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -734,6 +896,7 @@ public class Gym extends javax.swing.JPanel {
         // TODO add your handling code here:
         Members member = new Members(new javax.swing.JFrame(), true);
         member.setVisible(true);
+        
     }//GEN-LAST:event_memNewbuttonActionPerformed
 
     private void empNewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empNewbuttonActionPerformed
@@ -742,13 +905,9 @@ public class Gym extends javax.swing.JPanel {
         emp.setVisible(true);
     }//GEN-LAST:event_empNewbuttonActionPerformed
 
-    private void jScrollPane3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MousePressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jScrollPane3MousePressed
-
     private void memTrainingProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memTrainingProgActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+
         Training training = new Training(new javax.swing.JFrame(), true);
         training.setVisible(true);
     }//GEN-LAST:event_memTrainingProgActionPerformed
@@ -761,6 +920,30 @@ public class Gym extends javax.swing.JPanel {
     private void MemTableComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_MemTableComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_MemTableComponentAdded
+
+    private void memUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memUpdateButtonActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_memUpdateButtonActionPerformed
+
+    private void MemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemTableMouseClicked
+        // TODO add your handling code here:
+        //MemTable.getSelectedRow();
+        
+        int row = MemTable.rowAtPoint(evt.getPoint());
+        int col = 0;
+        int memid = Integer.parseInt( MemTable.getValueAt(row, col).toString());
+    }//GEN-LAST:event_MemTableMouseClicked
+
+    private void empTrainerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empTrainerTableMouseClicked
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_empTrainerTableMouseClicked
+
+    private void memTrainingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memTrainingTableMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_memTrainingTableMouseClicked
     
     /**
      //* @param args the command line arguments
@@ -848,16 +1031,25 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JButton MemJoinedReport;
     private javax.swing.JTextField MemSearchTP;
     private javax.swing.JTextField MemSearchTP1;
-    private javax.swing.JTable MemTable;
-    private javax.swing.JTable MemTable2;
+    //private javax.swing.JTable MemTable;
+   // private javax.swing.JTable MemTable2;
     private javax.swing.JButton QuitButton;
-    private javax.swing.JTable TrainingProTable;
-    private java.util.List<clienteditor.BMembers> bMembersList;
+    //private javax.swing.JTable TPTable;
+    private java.util.List<clienteditor.B_Members> bMembersList;
     private javax.persistence.Query bMembersQuery;
+    private java.util.List<clienteditor.B_Employee> b_EmployeeList;
+    private javax.persistence.Query b_EmployeeQuery;
+    private java.util.List<clienteditor.B_Members> b_MembersList;
+    private java.util.List<clienteditor.B_Members> b_MembersList1;
+    private java.util.List<clienteditor.B_Members> b_MembersList2;
+    private javax.persistence.Query b_MembersQuery;
+    private javax.persistence.Query b_MembersQuery1;
+    private javax.persistence.Query b_MembersQuery2;
     private javax.swing.JLabel clientInfoLabel;
     private javax.swing.JLabel clientInfoLabel1;
     private javax.swing.JButton empNewbutton;
-    private javax.swing.JTable empTrainerTable;
+   // private javax.swing.JTable empTable;
+   // private javax.swing.JTable empTrainerTable;
     private javax.persistence.EntityManager entityManager0;
     private javax.swing.JTextField equCost;
     private javax.swing.JButton equDelete;
@@ -885,6 +1077,7 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
@@ -898,7 +1091,7 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JLabel memSexLabel2;
     private javax.swing.JTabbedPane memTab;
     private javax.swing.JButton memTrainingProg;
-    private javax.swing.JTable memTrainingTable;
+   // private javax.swing.JTable memTrainingTable;
     private javax.swing.JButton memUpdateButton;
     private javax.swing.JTextField reportMemEDate;
     private javax.swing.JTextField reportMemSDate;
@@ -906,6 +1099,12 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JLabel validationMsgLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-    
+    static public javax.swing.JTable empTrainerTable;
+    static public javax.swing.JTable MemTable2;
+    static public javax.swing.JTable memTrainingTable;
+    static public javax.swing.JTable MemTable;
+    static public javax.swing.JTable TPTable;
+    static public javax.swing.JTable empTable;
+
 }
 

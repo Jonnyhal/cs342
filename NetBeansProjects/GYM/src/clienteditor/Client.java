@@ -48,7 +48,7 @@ public class Client {
     /** Age of the client. */
     private int age;
     /** Sex of the client (0 - female, 1 - male). */
-    private int sex;
+    private char sex;
     /** Street address of client */
     private String street;
     /** E-mail of the client. */
@@ -60,7 +60,9 @@ public class Client {
     /** Zip of client **/
     private int zip;  
     /** Phone number of client **/
-    private String phone;
+    private int phone;
+    private String date;
+    private String DOB;
     /** Email for client **/
     // <editor-fold defaultstate="collapsed" desc="PropertyChange Stuff">
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -73,9 +75,15 @@ public class Client {
         changeSupport.removePropertyChangeListener(listener);
     }    
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Get Methods">
-    public String getPhone() {
+    public String getDOB() {
+        
+        return DOB;
+    }
+    public String getDate() {
+        return date;
+    }
+    public int getPhone() {
         return phone;
     }
     public String getFirstName() {
@@ -98,7 +106,7 @@ public class Client {
         return email;
     }
 
-    public int getSex() {
+    public char getSex() {
         return sex;
     }
     public String getStreet() {
@@ -118,8 +126,18 @@ public class Client {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Set Methods">
-    public void setPhone(String phone) {
-        String oldPhone = this.phone;
+    public void setDOB(String DOB) {
+        String oldDOB = this.DOB;
+        this.DOB = DOB;
+        changeSupport.firePropertyChange("DOB", oldDOB, DOB);
+    }
+    public void setDate(String date) {
+        String oldDate = this.date;
+        this.date = date;
+        changeSupport.firePropertyChange("Date", oldDate, date);
+    }
+    public void setPhone(int phone) {
+        int oldPhone = this.phone;
         this.phone = phone;
         changeSupport.firePropertyChange("Phone number", oldPhone, phone);
     }
@@ -158,8 +176,8 @@ public class Client {
         changeSupport.firePropertyChange("street", oldStreet, street);
     }
 
-    public void setSex(int sex) {
-        int oldSex = this.sex;
+    public void setSex(char sex) {
+        char oldSex = this.sex;
         this.sex = sex;
         changeSupport.firePropertyChange("sex", oldSex, sex);
     }

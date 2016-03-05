@@ -40,6 +40,8 @@
 package clienteditor;
 
 import javax.swing.JOptionPane;
+import java.sql.*;
+import static clienteditor.AccessDelphiDB.*;
 
 /**
  *
@@ -102,16 +104,7 @@ public class Employees extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         EmpType = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        contactPanel = new javax.swing.JPanel();
-        nicknameLabel = new javax.swing.JLabel();
-        emailLabel = new javax.swing.JLabel();
-        webLabel = new javax.swing.JLabel();
-        imLabel = new javax.swing.JLabel();
-        CardNumber = new javax.swing.JTextField();
-        NameOnCard = new javax.swing.JTextField();
-        DateOfPayment = new javax.swing.JTextField();
-        TotalPayment = new javax.swing.JTextField();
+        Hourly = new javax.swing.JTextField();
 
         NewTrainerProgram.setText("New Trainer Program");
         NewTrainerProgram.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +244,19 @@ public class Employees extends javax.swing.JDialog {
 
         jLabel7.setText("Type:");
 
+        EmpType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpTypeActionPerformed(evt);
+            }
+        });
+
         jLabel8.setText("Hourly Pay:");
+
+        Hourly.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HourlyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout personalPanelLayout = new javax.swing.GroupLayout(personalPanel);
         personalPanel.setLayout(personalPanelLayout);
@@ -313,7 +318,7 @@ public class Employees extends javax.swing.JDialog {
                                             .addGroup(personalPanelLayout.createSequentialGroup()
                                                 .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(jTextField1)))
+                                            .addComponent(Hourly)))
                                     .addComponent(Email, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(PhoneNumber))))))
                 .addContainerGap())
@@ -367,7 +372,7 @@ public class Employees extends javax.swing.JDialog {
                     .addComponent(jLabel7)
                     .addComponent(EmpType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Hourly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -384,83 +389,6 @@ public class Employees extends javax.swing.JDialog {
         );
 
         clientInfoPane.addTab("Personal Info", personalPanel);
-
-        contactPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        nicknameLabel.setText("Card Number:"); // NOI18N
-
-        emailLabel.setText("Name on Card:"); // NOI18N
-
-        webLabel.setText("Date of Payment:"); // NOI18N
-
-        imLabel.setText("Total Payment:"); // NOI18N
-
-        CardNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CardNumberActionPerformed(evt);
-            }
-        });
-
-        NameOnCard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameOnCardActionPerformed(evt);
-            }
-        });
-
-        DateOfPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DateOfPaymentActionPerformed(evt);
-            }
-        });
-
-        TotalPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TotalPaymentActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout contactPanelLayout = new javax.swing.GroupLayout(contactPanel);
-        contactPanel.setLayout(contactPanelLayout);
-        contactPanelLayout.setHorizontalGroup(
-            contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contactPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicknameLabel)
-                    .addComponent(emailLabel)
-                    .addComponent(webLabel)
-                    .addComponent(imLabel))
-                .addGap(24, 24, 24)
-                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CardNumber)
-                    .addComponent(NameOnCard, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                    .addComponent(DateOfPayment)
-                    .addComponent(TotalPayment))
-                .addContainerGap())
-        );
-        contactPanelLayout.setVerticalGroup(
-            contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contactPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nicknameLabel)
-                    .addComponent(CardNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel)
-                    .addComponent(NameOnCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(webLabel)
-                    .addComponent(DateOfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imLabel)
-                    .addComponent(TotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        clientInfoPane.addTab("Type", contactPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -481,223 +409,39 @@ public class Employees extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clientInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(clientInfoPane, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clientInfoPane, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void firstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameActionPerformed
-        // TODO add your handling code here:
-        //************************************
-        //accept a string into the attribute First name for a member
-        //************************************
-        //if(not a string)
-        //  dont let the user save and mark this field for user to change
-        String fname = firstName.getText();
-        client.setFirstName(fname);
-
-        if (firstName.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter a First Name");
-        }
-
-    }//GEN-LAST:event_firstNameActionPerformed
-
-    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
-        // TODO add your handling code here:
-        //************************************
-        //accept a string into the attribute Last name for a member
-        //************************************
-        //if(not a string)
-        //  dont let the user save and mark this field for user to change
-        String lname = LastName.getText();
-        client.setLastName(lname);
-    }//GEN-LAST:event_LastNameActionPerformed
-
-    private void maleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleRadioButtonActionPerformed
-        // TODO add your handling code here:
-        //************************************
-        //If(this button is marked)
-        //{
-            //    set the sex to male
-            //}
-        //************************************
-        client.setSex(1);
-
-    }//GEN-LAST:event_maleRadioButtonActionPerformed
-
-    private void femaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadioButtonActionPerformed
-        // TODO add your handling code here:
-        //************************************
-        //If(this button is marked)
-        //{
-            //    set the sex to female
-            //}
-        //************************************
-        client.setSex(0);
-    }//GEN-LAST:event_femaleRadioButtonActionPerformed
-
-    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+    private void NewTrainerProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTrainerProgramActionPerformed
         // TODO add your handling code here:
         /*
-        saves all of the fields into the database
-        and closes the window
-        */
-        /** First Name **/
-        String fname = firstName.getText();
-        client.setFirstName(fname);
-        if (client.getFirstName() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter a First Name");
-        }
-        /** Last Name **/
-        String lname = LastName.getText();
-        client.setLastName(lname);
-        if (LastName.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter a Last Name");
-        }
-        String street = StreetAddr.getText();
-        client.setStreet(street);
-        if (client.getStreet() == null) {
-            // JOptionPane.showMessageDialog(null, "Please enter a Street Addr");
-        }
-        String city = City.getText();
-        client.setCity(city);
-        if (client.getCity() == null) {
-            //JOptionPane.showMessageDialog(null, "Please enter a City");
-        }
-        String state = State.getText();
-        client.setState(state);
-        if (client.getLastName() == null) {
-            // JOptionPane.showMessageDialog(null, "Please enter a State");
-        }
-        if (Zip.getText() != null) {
-            int zip = Integer.parseInt(Zip.getText());
-            client.setZip(zip);
-        }
-        if (client.getLastName() == null) {
-            //OptionPane.showMessageDialog(null, "Please enter a Zip");
-        }
-        String phone = PhoneNumber.getText();
-        client.setPhone(phone);
-        if (client.getPhone() == null) {
-            //JOptionPane.showMessageDialog(null, "Please enter a Phone Number");
-        }
-        String email = Email.getText();
-        client.setEmail(email);
-        if (client.getEmail() == null) {
-            //JOptionPane.showMessageDialog(null, "Please enter an Email");
-        }
-        if (client.getLastName() != null && client.getFirstName() != null
-            && client.getStreet() != null && client.getCity() != null
-            && client.getState() != null && Zip.getText() != null
-            && client.getPhone() != null && Email.getText() != null){
-            JOptionPane.showMessageDialog(null,"Welcome to Fitness 21 " +fname+" "+lname);
-        }
-        dispose();
-    }//GEN-LAST:event_SaveButtonActionPerformed
+        try to figure out how to open up a new window that allows for the
+        new trainer program to be accepted.
 
-    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
+        **if possible**
+        if the member doesnt have a training program dont put a
+        trainer program tab and then once a member has added a trainer
+        program add the trainer program tab.
+        ***************
+
+        */
+    }//GEN-LAST:event_NewTrainerProgramActionPerformed
+
+    private void HourlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HourlyActionPerformed
         // TODO add your handling code here:
-        /*
-        cancels the new member and closes out the window without saving
-        anything
-        possible trouble:
-        -when cancel is pressed and there are fields that arent empty
-        are we going to have to set everything to NULL or will it
-        just not save it.
-        */
-        dispose();
-    }//GEN-LAST:event_CancelButtonActionPerformed
+    }//GEN-LAST:event_HourlyActionPerformed
 
-    private void DateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfBirthActionPerformed
+    private void EmpTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpTypeActionPerformed
         // TODO add your handling code here:
-        /*
-        //************************************
-        //adds the members date of birth
-        //try to figure out how to accept the format mm/dd/yyyy
-        //***********possible way to accept date***********
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        String day = dayFormat.format(Date.parse(payback.creationDate.date));
+    }//GEN-LAST:event_EmpTypeActionPerformed
 
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
-        String month = monthFormat.format(Date.parse(payback.creationDate.date));
-
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-        String year = yearFormat.format(Date.parse(payback.creationDate.date));
-        //*************************************************
-        //
-        //possible formula to check age
-        //int m, d , y, sum;
-        //sum = m + d + y;
-        //if(sum > date_required_to_go_to_gym)
-        //  accept user into database
-        //else
-        //  give user an error("You are too young to go to the gym")
-        //************************************
-        */
-    }//GEN-LAST:event_DateOfBirthActionPerformed
-
-    private void StreetAddrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetAddrActionPerformed
+    private void EndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndDateActionPerformed
         // TODO add your handling code here:
-        //************************************
-        /*
-        probably best to accept a this as a string since int and chars
-        are used.
-        */
-        //************************************
-        String street = StreetAddr.getText();
-        client.setStreet(street);
-    }//GEN-LAST:event_StreetAddrActionPerformed
-
-    private void CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityActionPerformed
-        // TODO add your handling code here:
-        //************************************
-        /*
-        Accept a string for the city attribute
-        */
-        String city = City.getText();
-        client.setCity(city);
-    }//GEN-LAST:event_CityActionPerformed
-
-    private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
-        // TODO add your handling code here:
-        /*
-        Accept a string for the state attribute
-        */
-        String state = State.getText();
-        client.setState(state);
-    }//GEN-LAST:event_StateActionPerformed
-
-    private void ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZipActionPerformed
-        // TODO add your handling code here:
-        /*
-        accept an integer for the zip attribute
-        */
-        int zip = Integer.parseInt(Zip.getText());
-        client.setZip(zip);
-        JOptionPane.showMessageDialog(null,"Your Zip is: " + zip);
-    }//GEN-LAST:event_ZipActionPerformed
-
-    private void PhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneNumberActionPerformed
-        // TODO add your handling code here:
-        /*
-        probably accept this as a string since no arithmetic will be used
-        into the phone number attribute for members
-        */
-        String phone = PhoneNumber.getText();
-        client.setPhone(phone);
-    }//GEN-LAST:event_PhoneNumberActionPerformed
-
-    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
-        // TODO add your handling code here:
-        /*
-        accept as a string for the email attribute for members
-        */
-        String email = Email.getText();
-        client.setEmail(email);
-    }//GEN-LAST:event_EmailActionPerformed
+    }//GEN-LAST:event_EndDateActionPerformed
 
     private void StartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartDateActionPerformed
         // TODO add your handling code here:
@@ -715,72 +459,178 @@ public class Employees extends javax.swing.JDialog {
         */
     }//GEN-LAST:event_StartDateActionPerformed
 
-    private void CardNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardNumberActionPerformed
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
         // TODO add your handling code here:
         /*
-        accept as an integer for the card number attribute for members
+        accept as a string for the email attribute for members
         */
-    }//GEN-LAST:event_CardNumberActionPerformed
+        String email = Email.getText();
+        client.setEmail(email);
+    }//GEN-LAST:event_EmailActionPerformed
 
-    private void NameOnCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameOnCardActionPerformed
+    private void PhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneNumberActionPerformed
         // TODO add your handling code here:
         /*
-        Accept this as a string for the name on card attribute for members
+        probably accept this as a string since no arithmetic will be used
+        into the phone number attribute for members
         */
-    }//GEN-LAST:event_NameOnCardActionPerformed
+        int phone = Integer.parseInt(PhoneNumber.getText());
+        client.setPhone(phone);
+    }//GEN-LAST:event_PhoneNumberActionPerformed
 
-    private void DateOfPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfPaymentActionPerformed
+    private void ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZipActionPerformed
         // TODO add your handling code here:
         /*
-        try to figure out how to accept the format mm/dd/yyyy
-
-        possible formula for finding out the date
-
-        int m, d, y, sum;
-        sum = m + d + y;
-
-        if we can get this working then we can figure out when their next
-        payment is due.
-        ***********possible way to accept date***********
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        String day = dayFormat.format(Date.parse(payback.creationDate.date));
-
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
-        String month = monthFormat.format(Date.parse(payback.creationDate.date));
-
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-        String year = yearFormat.format(Date.parse(payback.creationDate.date));
-        *************************************************
+        accept an integer for the zip attribute
         */
-    }//GEN-LAST:event_DateOfPaymentActionPerformed
+        int zip = Integer.parseInt(Zip.getText());
+        client.setZip(zip);
+        JOptionPane.showMessageDialog(null,"Your Zip is: " + zip);
+    }//GEN-LAST:event_ZipActionPerformed
 
-    private void TotalPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalPaymentActionPerformed
+    private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
         // TODO add your handling code here:
         /*
-        accept an integer but make sure that when you cout theres
-        a dollar sign.
-        ex- cout << "$" << total;
+        Accept a string for the state attribute
         */
-    }//GEN-LAST:event_TotalPaymentActionPerformed
+        String state = State.getText();
+        client.setState(state);
+    }//GEN-LAST:event_StateActionPerformed
 
-    private void NewTrainerProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTrainerProgramActionPerformed
+    private void CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityActionPerformed
+        // TODO add your handling code here:
+        //************************************
+        /*
+        Accept a string for the city attribute
+        */
+        String city = City.getText();
+        client.setCity(city);
+    }//GEN-LAST:event_CityActionPerformed
+
+    private void StreetAddrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetAddrActionPerformed
+        // TODO add your handling code here:
+        //************************************
+        /*
+        probably best to accept a this as a string since int and chars
+        are used.
+        */
+        //************************************
+        String street = StreetAddr.getText();
+        client.setStreet(street);
+    }//GEN-LAST:event_StreetAddrActionPerformed
+
+    private void DateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfBirthActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_DateOfBirthActionPerformed
+
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
         /*
-        try to figure out how to open up a new window that allows for the
-        new trainer program to be accepted.
-
-        **if possible**
-        if the member doesnt have a training program dont put a
-        trainer program tab and then once a member has added a trainer
-        program add the trainer program tab.
-        ***************
-
+        cancels the new member and closes out the window without saving
+        anything
+        possible trouble:
+        -when cancel is pressed and there are fields that arent empty
+        are we going to have to set everything to NULL or will it
+        just not save it.
         */
-    }//GEN-LAST:event_NewTrainerProgramActionPerformed
+        dispose();
+    }//GEN-LAST:event_CancelButtonActionPerformed
 
-    private void EndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndDateActionPerformed
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EndDateActionPerformed
+        /*
+        saves all of the fields into the database
+        and closes the window
+        */
+        Connection cnn;
+        String fname = firstName.getText();
+        String lname = LastName.getText();
+        String dob = DateOfBirth.getText();
+        String street = StreetAddr.getText();
+        String city = City.getText();
+        String state = State.getText();
+        int zip = Integer.parseInt(Zip.getText());
+        String phone = (PhoneNumber.getText());
+        String email = Email.getText();
+        String etype = EmpType.getText();
+        float hrly = Float.parseFloat(Hourly.getText());
+        char sex = client.getSex();
+        String sdate = StartDate.getText();
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            //user = usr; passwd = pwd;
+            // Class.forName("oracle.jdbc.driver.OracleDriver");
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int ssn = 111111111;
+            int id = 0;
+            ResultSet rs = stmt.executeQuery("Select m.empid from B_employee m");
+            while(rs.next()) {
+                id = rs.getInt("empId");
+            }
+            id++;
+            db.executeSQL("INSERT into B_Employee values("+id+",'"+fname+"','"+lname+"','"+etype+"',"
+                    + "to_date('"+dob+"', 'mm/dd/yyyy'),'"+sex+"','"+street+"','"+city+"','"+state+"',"
+                    +zip+","+phone+","+ssn+","+hrly+",to_date('"+sdate+"', 'mm/dd/yyyy'), null)");
+            Gym.updateEmployeeTable();
+            Gym.updateEmpTrainerTable();
+      } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
+        dispose();
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void femaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadioButtonActionPerformed
+        // TODO add your handling code here:
+        //************************************
+        //If(this button is marked)
+        //{
+            //    set the sex to female
+            //}
+        //************************************
+        char fsex = 'F';
+        client.setSex(fsex);
+    }//GEN-LAST:event_femaleRadioButtonActionPerformed
+
+    private void maleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleRadioButtonActionPerformed
+        // TODO add your handling code here:
+        //************************************
+        //If(this button is marked)
+        //{
+            //    set the sex to male
+            //}
+        //************************************
+        char msex = 'M';
+        client.setSex(msex);
+    }//GEN-LAST:event_maleRadioButtonActionPerformed
+
+    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
+        // TODO add your handling code here:
+        //************************************
+        //accept a string into the attribute Last name for a member
+        //************************************
+        //if(not a string)
+        //  dont let the user save and mark this field for user to change
+        String lname = LastName.getText();
+        client.setLastName(lname);
+    }//GEN-LAST:event_LastNameActionPerformed
+
+    private void firstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameActionPerformed
+        // TODO add your handling code here:
+        //************************************
+        //accept a string into the attribute First name for a member
+        //************************************
+        //if(not a string)
+        //  dont let the user save and mark this field for user to change
+        String fname = firstName.getText();
+        client.setFirstName(fname);
+
+        if (firstName.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Please enter a First Name");
+        }
+    }//GEN-LAST:event_firstNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -827,33 +677,27 @@ public class Employees extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;
-    private javax.swing.JTextField CardNumber;
     private javax.swing.JTextField City;
     private javax.swing.JTextField DateOfBirth;
-    private javax.swing.JTextField DateOfPayment;
     private javax.swing.JTextField Email;
     private javax.swing.JTextField EmpType;
     private javax.swing.JTextField EndDate;
+    private javax.swing.JTextField Hourly;
     private javax.swing.JTextField LastName;
-    private javax.swing.JTextField NameOnCard;
     private javax.swing.JButton NewTrainerProgram;
     private javax.swing.JTextField PhoneNumber;
     private javax.swing.JButton SaveButton;
     private javax.swing.JTextField StartDate;
     private javax.swing.JTextField State;
     private javax.swing.JTextField StreetAddr;
-    private javax.swing.JTextField TotalPayment;
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ageLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel clientInfoLabel;
     private javax.swing.JTabbedPane clientInfoPane;
-    private javax.swing.JPanel contactPanel;
-    private javax.swing.JLabel emailLabel;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JTextField firstName;
     private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JLabel imLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -862,16 +706,13 @@ public class Employees extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton maleRadioButton;
     private javax.swing.JLabel maritalStatusLabel;
-    private javax.swing.JLabel nicknameLabel;
     private javax.swing.JPanel personalPanel;
     private javax.swing.JLabel sexLabel;
     private javax.swing.JLabel sexLabel1;
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JLabel usernameLabel;
-    private javax.swing.JLabel webLabel;
     // End of variables declaration//GEN-END:variables
 }
 

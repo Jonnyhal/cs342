@@ -4,9 +4,22 @@
  * and open the template in the editor.
  */
 package clienteditor;
+//import static clienteditor.AccessDelphiDB.passwd;
+//import static clienteditor.AccessDelphiDB.user;
+//import static clienteditor.AccessDelphiDB.url;
+import static clienteditor.AccessDelphiDB.*;
+import static clienteditor.Gym.*;
+import java.sql.*;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.*;
 import javax.swing.JOptionPane;
-
-/**
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
+/*
  *
  * @author jonny
  */
@@ -15,11 +28,17 @@ public class Members extends javax.swing.JDialog {
     /**
      * Creates new form Member
      */
+    Connection cnn;
+    Statement stmt;
+    ResultSet rs;
+  
+
     public Members(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -814,7 +833,8 @@ public class Members extends javax.swing.JDialog {
             //    set the sex to male
             //}
         //************************************
-        client.setSex(1);
+        char msex = 'M';
+        client.setSex(msex);
     }//GEN-LAST:event_maleRadioButtonActionPerformed
 
     private void femaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadioButtonActionPerformed
@@ -825,7 +845,8 @@ public class Members extends javax.swing.JDialog {
             //    set the sex to female
             //}
         //************************************
-        client.setSex(0);
+        char fsex = 'F';
+        client.setSex(fsex);
     }//GEN-LAST:event_femaleRadioButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
@@ -870,21 +891,44 @@ public class Members extends javax.swing.JDialog {
             //OptionPane.showMessageDialog(null, "Please enter a Zip");
         }
         String phone = PhoneNumber.getText();
-        client.setPhone(phone);
-        if (client.getPhone() == null) {
+        //client.setPhone(phone);
+        //if (client.getPhone() == null) {
             //JOptionPane.showMessageDialog(null, "Please enter a Phone Number");
-        }
+        //}
         String email = Email.getText();
         client.setEmail(email);
         if (client.getEmail() == null) {
             //JOptionPane.showMessageDialog(null, "Please enter an Email");
+        
         }
-        if (client.getLastName() != null && client.getFirstName() != null
-            && client.getStreet() != null && client.getCity() != null
-            && client.getState() != null && Zip.getText() != null
-            && client.getPhone() != null && Email.getText() != null){
-            JOptionPane.showMessageDialog(null,"Welcome to Fitness 21 " +fname+" "+lname);
-        }
+        String DOB = DateOfBirth.getText();
+        int zip = Integer.parseInt(Zip.getText());
+        String sDate = StartDate.getText();
+
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            //user = usr; passwd = pwd;
+            // Class.forName("oracle.jdbc.driver.OracleDriver");
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int id = 0;
+            ResultSet rs = stmt.executeQuery("Select m.memid from B_members m");
+            while(rs.next()) {
+                id = rs.getInt("memId");
+            }
+            id++;
+            db.executeSQL("INSERT into B_Members values("+id+",'"+fname+"','"+lname+"',to_date('"
+                    +DOB+"','mm/dd/yyyy'),'" +client.getSex()+"','"+street+"','"+city+"','"
+                    +state+"',"+zip+","+phone+",'"+email+"', to_date('"
+                    +sDate+"', 'mm/dd/yyyy'),null);");
+          Gym.updateMemTable();
+          Gym.updateMem2Table();
+
+      } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
+       
         dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed
 
@@ -903,30 +947,10 @@ public class Members extends javax.swing.JDialog {
 
     private void DateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfBirthActionPerformed
         // TODO add your handling code here:
-        /*
-        //************************************
-        //adds the members date of birth
-        //try to figure out how to accept the format mm/dd/yyyy
-        //***********possible way to accept date***********
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        String day = dayFormat.format(Date.parse(payback.creationDate.date));
-
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
-        String month = monthFormat.format(Date.parse(payback.creationDate.date));
-
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-        String year = yearFormat.format(Date.parse(payback.creationDate.date));
-        //*************************************************
-        //
-        //possible formula to check age
-        //int m, d , y, sum;
-        //sum = m + d + y;
-        //if(sum > date_required_to_go_to_gym)
-        //  accept user into database
-        //else
-        //  give user an error("You are too young to go to the gym")
-        //************************************
-        */
+        String DOB = DateOfBirth.getText();
+        DateFormat date = new SimpleDateFormat ("MM/dd/yyyy");
+        String dob = date.format(client.getDOB());
+        client.setDOB(dob);
     }//GEN-LAST:event_DateOfBirthActionPerformed
 
     private void StreetAddrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetAddrActionPerformed
@@ -976,7 +1000,7 @@ public class Members extends javax.swing.JDialog {
         probably accept this as a string since no arithmetic will be used
         into the phone number attribute for members
         */
-        String phone = PhoneNumber.getText();
+        int phone = Integer.parseInt(PhoneNumber.getText());
         client.setPhone(phone);
     }//GEN-LAST:event_PhoneNumberActionPerformed
 
@@ -1003,6 +1027,10 @@ public class Members extends javax.swing.JDialog {
         String year = yearFormat.format(Date.parse(payback.creationDate.date));
         *************************************************
         */
+        String sDate = StartDate.getText();
+        DateFormat date = new SimpleDateFormat ("MM/dd/yyyy");
+        String Sdate = date.format(client.getDate());
+        client.setDate(Sdate);
     }//GEN-LAST:event_StartDateActionPerformed
 
     private void CardNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardNumberActionPerformed

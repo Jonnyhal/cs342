@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package clienteditor;
+import java.sql.*;
+import static clienteditor.AccessDelphiDB.*;
+
 
 /**
  *
@@ -11,6 +14,7 @@ package clienteditor;
  */
 public class Training extends javax.swing.JDialog {
     private Train train = Train.createTrain();
+    Connection cnn;
     /**
      * Creates new form Training
      */
@@ -46,10 +50,15 @@ public class Training extends javax.swing.JDialog {
         TrainProEBMI = new javax.swing.JTextField();
         ProSave = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        TrainingProgramReport = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        TrainSDate = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        TrainEDate = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        NewActivity = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         ActName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -75,15 +84,51 @@ public class Training extends javax.swing.JDialog {
 
         jLabel7.setText("Program Focus:");
 
+        TrainProFocus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainProFocusActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Height");
+
+        TrainProHeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainProHeightActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Starting Weight:");
 
+        TrainProSWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainProSWeightActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Ending Weight:");
+
+        TrainProEWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainProEWeightActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Start BMI:");
 
+        TrainProSBMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainProSBMIActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("End BMI:");
+
+        TrainProEBMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainProEBMIActionPerformed(evt);
+            }
+        });
 
         ProSave.setText("Save");
         ProSave.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +143,18 @@ public class Training extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        TrainingProgramReport.setText("Training Program Report");
+
+        jLabel14.setText("Start Date:");
+
+        TrainSDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrainSDateActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("End Date:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,32 +178,48 @@ public class Training extends javax.swing.JDialog {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addGap(0, 26, Short.MAX_VALUE)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(TrainProSWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(TrainProSWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(TrainProSBMI, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(TrainSDate, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(TrainProSBMI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel3)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(TrainingProgramReport)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel3)
+                                                            .addComponent(jLabel5))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel15)
+                                                        .addGap(44, 44, 44)))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(TrainEDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(TrainProEBMI, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(TrainProEWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(TrainProHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(TrainProFocus)))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TrainProHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TrainProFocus, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(TrainProName)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TrainProEBMI, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                            .addComponent(TrainProEWeight))
-                        .addGap(2, 2, 2))))
+                                .addComponent(TrainProName, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,10 +248,17 @@ public class Training extends javax.swing.JDialog {
                     .addComponent(TrainProSBMI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(TrainProEBMI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(TrainSDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(TrainEDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ProSave)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(TrainingProgramReport))
                 .addContainerGap())
         );
 
@@ -197,25 +277,66 @@ public class Training extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Insert New Activity");
+        NewActivity.setText("Insert New Activity");
+        NewActivity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewActivityActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Activity Name:");
 
+        ActName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActNameActionPerformed(evt);
+            }
+        });
+
         jLabel9.setText("Time(min):");
+
+        ActTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActTimeActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Sets:");
 
+        ActSets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActSetsActionPerformed(evt);
+            }
+        });
+
         jLabel11.setText("Reps:");
+
+        ActReps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActRepsActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Starting Limit:");
 
+        ActSLimit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActSLimitActionPerformed(evt);
+            }
+        });
+
         jLabel13.setText("Current Limit:");
+
+        ActCLimit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActCLimitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -241,7 +362,7 @@ public class Training extends javax.swing.JDialog {
                             .addComponent(ActCLimit)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(165, 165, 165)
-                        .addComponent(jButton1)))
+                        .addComponent(NewActivity)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -265,13 +386,14 @@ public class Training extends javax.swing.JDialog {
                         .addComponent(jLabel11))
                     .addComponent(ActReps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(ActSLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(ActCLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ActSLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)
+                        .addComponent(ActCLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(NewActivity)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -282,7 +404,7 @@ public class Training extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,19 +414,126 @@ public class Training extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TrainProNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TrainProNameActionPerformed
-
-    private void ProSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProSaveActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_ProSaveActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ProSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProSaveActionPerformed
+        // TODO add your handling code here:
+        //Trainer Program
+        String pname = TrainProName.getText();
+        String focus = TrainProFocus.getText();
+        int height = Integer.parseInt(TrainProHeight.getText());
+        int sweight = Integer.parseInt(TrainProSWeight.getText());
+        int sbmi = Integer.parseInt(TrainProSBMI.getText());
+        int ebmi = -1; 
+        int eweight = -1; 
+        String sdate = TrainSDate.getText();
+        String edate = TrainEDate.getText();
+        //Activity
+        if (TrainProEBMI.getText() != null) {
+            ebmi = Integer.parseInt(TrainProEBMI.getText());
+        }
+        if (TrainProEWeight.getText() != null) {
+            eweight = Integer.parseInt(TrainProEWeight.getText());
+        }
+          try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            //user = usr; passwd = pwd;
+            // Class.forName("oracle.jdbc.driver.OracleDriver");
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int id = 0;
+            ResultSet rs = stmt.executeQuery("Select p.proid from B_Training p");
+            while(rs.next()) {
+                id = rs.getInt("proid");
+            }
+            id++;
+            db.executeSQL("INSERT into B_Training values("+id+","+height+","+sweight+","+eweight+","+sbmi+
+                    ","+ebmi+",'"+pname+"','"+focus+"')");
+          
+          Gym.empTrainSelect(id, sdate);
+          Gym.memTrainSelect(id,sdate,edate);
+          Gym.updateTrainerProTable();
+      } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
+               
+        /*
+        String actname = ActName.getText();
+        int time = Integer.parseInt(ActTime.getText());
+        int slimit = Integer.parseInt(ActSLimit.getText());
+        int climit = Integer.parseInt(ActCLimit.getText());
+        int sets = Integer.parseInt(ActSets.getText());
+        int reps = Integer.parseInt(ActReps.getText());
+        Gym.updateTrainerProTable();*/
+        
+
+        dispose();
+    }//GEN-LAST:event_ProSaveActionPerformed
+
+    private void TrainProNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProNameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_TrainProNameActionPerformed
+
+    private void TrainProFocusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProFocusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainProFocusActionPerformed
+
+    private void TrainProHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProHeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainProHeightActionPerformed
+
+    private void TrainProSWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProSWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainProSWeightActionPerformed
+
+    private void TrainProSBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProSBMIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainProSBMIActionPerformed
+
+    private void TrainProEWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProEWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainProEWeightActionPerformed
+
+    private void TrainProEBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProEBMIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainProEBMIActionPerformed
+
+    private void ActNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActNameActionPerformed
+
+    private void ActTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActTimeActionPerformed
+
+    private void ActSLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActSLimitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActSLimitActionPerformed
+
+    private void ActSetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActSetsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActSetsActionPerformed
+
+    private void ActRepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActRepsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActRepsActionPerformed
+
+    private void ActCLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActCLimitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActCLimitActionPerformed
+
+    private void NewActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewActivityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewActivityActionPerformed
+
+    private void TrainSDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainSDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrainSDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,7 +584,9 @@ public class Training extends javax.swing.JDialog {
     private javax.swing.JTextField ActSLimit;
     private javax.swing.JTextField ActSets;
     private javax.swing.JTextField ActTime;
+    private javax.swing.JButton NewActivity;
     private javax.swing.JButton ProSave;
+    private javax.swing.JTextField TrainEDate;
     private javax.swing.JTextField TrainProEBMI;
     private javax.swing.JTextField TrainProEWeight;
     private javax.swing.JTextField TrainProFocus;
@@ -363,13 +594,16 @@ public class Training extends javax.swing.JDialog {
     private javax.swing.JTextField TrainProName;
     private javax.swing.JTextField TrainProSBMI;
     private javax.swing.JTextField TrainProSWeight;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField TrainSDate;
+    private javax.swing.JButton TrainingProgramReport;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

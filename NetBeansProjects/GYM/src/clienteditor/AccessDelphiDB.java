@@ -16,7 +16,7 @@ public class AccessDelphiDB {
     Statement stmt;
     ResultSet res;
     
-    String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+    static String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
     static String user = "winter342", passwd = "c3m4p2s";
     public AccessDelphiDB(String usr, String pwd) {
       try {
@@ -39,7 +39,7 @@ public class AccessDelphiDB {
        try {
             if ( sql.charAt(sql.length() -1) == ';' ) sql = sql.substring(0, sql.length() -1);
           res = stmt.executeQuery(sql);
-         } catch (SQLException e) { System.err.println("\nError occured in execu    ting SQL: \n\t" + sql + "\n"); }
+         } catch (SQLException e) { System.err.println("\nError occured in executing SQL: \n\t" + sql + "\n"); }
    }
 
        
