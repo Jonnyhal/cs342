@@ -6,6 +6,7 @@
 package clienteditor;
 import java.sql.*;
 import static clienteditor.AccessDelphiDB.*;
+import net.proteanit.sql.DbUtils;
 
 
 /**
@@ -15,14 +16,71 @@ import static clienteditor.AccessDelphiDB.*;
 public class Training extends javax.swing.JDialog {
     private Train train = Train.createTrain();
     Connection cnn;
+    
     /**
      * Creates new form Training
      */
     public Training(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        int proid = GetProId();
+        ActTable(proid);
     }
+    public int GetProId() {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            Connection cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "Select p.proid from B_training p";
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            int id = 0;
+            while(rs.next()) {
+                id = rs.getInt("proid");
+            }
+            //id++;
+            return id;
+        } catch (Exception e){
+        }
+        return 0;
+    }
+    static public void ActTable(int proid) {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            Connection cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select a from b_actview a where a.proid = "+proid;
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            ActTable.setModel(DbUtils.resultSetToTableModel(rs));
 
+        } catch (Exception e){
+        }
+    }
+    public void ActUpdate(int proid) {
+         try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            String sql = "select a from b_actview a where a.proid = "+proid;
+            st=cnn.prepareStatement(sql);
+            rs = st.executeQuery(sql);
+            ActTable.setModel(DbUtils.resultSetToTableModel(rs));
+         } catch (Exception e){
+         }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +115,7 @@ public class Training extends javax.swing.JDialog {
         TrainEDate = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ActTable = new javax.swing.JTable();
         NewActivity = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         ActName = new javax.swing.JTextField();
@@ -264,7 +322,7 @@ public class Training extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Program Info", jPanel2);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ActTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -275,7 +333,7 @@ public class Training extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(ActTable);
 
         NewActivity.setText("Insert New Activity");
         NewActivity.addActionListener(new java.awt.event.ActionListener() {
@@ -453,6 +511,7 @@ public class Training extends javax.swing.JDialog {
                 id = rs.getInt("proid");
             }
             id++;
+            train.setProId(id);
             db.executeSQL("INSERT into B_Training values("+id+","+height+","+sweight+","+eweight+","+sbmi+
                     ","+ebmi+",'"+pname+"','"+focus+"')");
           
@@ -460,18 +519,9 @@ public class Training extends javax.swing.JDialog {
           Gym.memTrainSelect(id,sdate,edate);
           Gym.updateTrainerProTable();
       } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
-               
-        /*
-        String actname = ActName.getText();
-        int time = Integer.parseInt(ActTime.getText());
-        int slimit = Integer.parseInt(ActSLimit.getText());
-        int climit = Integer.parseInt(ActCLimit.getText());
-        int sets = Integer.parseInt(ActSets.getText());
-        int reps = Integer.parseInt(ActReps.getText());
-        Gym.updateTrainerProTable();*/
         
 
-        dispose();
+       // dispose();
     }//GEN-LAST:event_ProSaveActionPerformed
 
     private void TrainProNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProNameActionPerformed
@@ -529,6 +579,39 @@ public class Training extends javax.swing.JDialog {
 
     private void NewActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewActivityActionPerformed
         // TODO add your handling code here:
+        String actname = ActName.getText();
+        int time = Integer.parseInt(ActTime.getText());
+        int slimit = Integer.parseInt(ActSLimit.getText());
+        int climit = Integer.parseInt(ActCLimit.getText());
+        int sets = Integer.parseInt(ActSets.getText());
+        int reps = Integer.parseInt(ActReps.getText());
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            //user = usr; passwd = pwd;
+            // Class.forName("oracle.jdbc.driver.OracleDriver");
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int proid = 0;
+            int actid = 0;
+            //ResultSet rs = stmt.executeQuery("Select p.proid from B_Training p");
+            ResultSet rst = stmt.executeQuery("Select a.actId from b_activity a");
+            while(rst.next()) {
+                actid = rst.getInt("actid");
+            }
+            proid =  GetProId();
+            actid++;
+            proid -= 1;
+            String actsql = "Insert into b_activity values ("+actid+",'"+actname+"')";
+            db.executeSQL(actsql);
+            String invsql = "Insert into b_involves values ("+proid+","+actid+","+time+","+sets+","+reps+","
+                    + ""+slimit+","+climit+")";
+            db.executeSQL(invsql);
+            
+      } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
+        ActUpdate(GetProId());
     }//GEN-LAST:event_NewActivityActionPerformed
 
     private void TrainSDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainSDateActionPerformed
@@ -583,6 +666,7 @@ public class Training extends javax.swing.JDialog {
     private javax.swing.JTextField ActReps;
     private javax.swing.JTextField ActSLimit;
     private javax.swing.JTextField ActSets;
+    //private javax.swing.JTable ActTable;
     private javax.swing.JTextField ActTime;
     private javax.swing.JButton NewActivity;
     private javax.swing.JButton ProSave;
@@ -616,6 +700,6 @@ public class Training extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    static public javax.swing.JTable ActTable;
 }

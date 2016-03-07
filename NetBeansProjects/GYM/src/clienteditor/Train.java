@@ -64,6 +64,7 @@ public class Train {
     private int slimit;
     /**Activity Current Limit*/
     private int climit;
+    private int proid;
     // <editor-fold defaultstate="collapsed" desc="PropertyChange Stuff">
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     
@@ -77,6 +78,9 @@ public class Train {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Get Methods">
+    public int getProId() {
+        return proid;
+    }
     public String getProName() {
         return proName;
     }
@@ -120,6 +124,11 @@ public class Train {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Set Methods">
+    public void setProId(int proid) {
+        int oldId = this.proid;
+        this.proid = proid;
+        changeSupport.firePropertyChange("proid", oldId, proid);
+    }
     public void setProName(String proName) {
         String oldProName = this.proName;
         this.proName = proName;

@@ -29,11 +29,11 @@
 
 package clienteditor;
 import static clienteditor.AccessDelphiDB.*;
-import static clienteditor.AccessDelphiDB.url;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 import net.proteanit.sql.DbUtils;
+import clienteditor.Train.*;
 /**
  * Form that allows editing of information about one client.
  *
@@ -45,7 +45,7 @@ import net.proteanit.sql.DbUtils;
 public class Gym extends javax.swing.JPanel {
     private Client client = Client.createClient();
     static Connection cnn;
-    Vector selectedCells = new Vector<int[]>();
+
 
     public Gym() {
         initComponents();
@@ -907,7 +907,23 @@ public class Gym extends javax.swing.JPanel {
 
     private void memTrainingProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memTrainingProgActionPerformed
         // TODO add your handling code here
-
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            //user = usr; passwd = pwd;
+            // Class.forName("oracle.jdbc.driver.OracleDriver");
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int id = 0;
+            ResultSet rs = stmt.executeQuery("Select p.proid from B_Training p");
+            while(rs.next()) {
+                id = rs.getInt("proid");
+            }
+            id++;
+            Training.ActTable(id);
+        } catch (Exception e) {}
         Training training = new Training(new javax.swing.JFrame(), true);
         training.setVisible(true);
     }//GEN-LAST:event_memTrainingProgActionPerformed
