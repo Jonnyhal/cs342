@@ -6,6 +6,9 @@
 package clienteditor;
 import java.sql.*;
 import static clienteditor.AccessDelphiDB.*;
+import static clienteditor.Gym.TrainSelect;
+import static clienteditor.Gym.edittag;
+import static java.lang.System.out;
 import net.proteanit.sql.DbUtils;
 
 
@@ -25,6 +28,56 @@ public class Training extends javax.swing.JDialog {
         initComponents();
         int proid = GetProId();
         ActTable(proid);
+        ActUpdate(proid);
+        if (edittag == 1) {
+            setFields(TrainSelect());
+        }
+    }
+    public void setFields(int proid) {
+        //if (edittag == 1) {
+        //TrainProName.setText("This is a Test");
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+           
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int id = 0;
+            int height = 0, sweight = 0, eweight = 0, sbmi = 0,ebmi = 0;
+            String name = null, focus = null;
+            ResultSet rs = stmt.executeQuery("Select p.* from B_Training p where p.proid = "+proid);
+            rs.next();
+            id = rs.getInt("proid");
+            height = rs.getInt("memheight");
+            sweight = rs.getInt("memstartweight");
+            eweight = rs.getInt("memendweight");
+            sbmi = rs.getInt("StartBMI");
+            ebmi = rs.getInt("EndBMI");
+            name = rs.getString("Name");
+            focus = rs.getString("Focus");
+            Training.TrainProName.setText(name);
+            Training.TrainProFocus.setText(focus);
+            TrainProHeight.setText(Integer.toString(height));
+            TrainProSWeight.setText(Integer.toString(sweight));
+            TrainProEWeight.setText(Integer.toString(eweight));
+            TrainProSBMI.setText(Integer.toString(sbmi));
+            TrainProEBMI.setText(Integer.toString(ebmi));
+            
+            String sdate, edate;
+            ResultSet rst = stmt.executeQuery("Select p.* from B_Trains p where p.proid = "+proid);
+            rst.next();
+            sdate = rst.getString("sdate");
+            edate = rst.getString("edate");
+            TrainSDate.setText(sdate);
+            TrainEDate.setText(edate);
+            
+            Training.ActTable(id);
+        } catch (Exception e) {e.printStackTrace(); System.exit(-1);}
+       // }
+       
+
     }
     public int GetProId() {
         try {
@@ -45,6 +98,7 @@ public class Training extends javax.swing.JDialog {
             //id++;
             return id;
         } catch (Exception e){
+            e.printStackTrace(); System.exit(-1);
         }
         return 0;
     }
@@ -57,15 +111,15 @@ public class Training extends javax.swing.JDialog {
             String user = "winter342", passwd = "c3m4p2s";
             DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
             Connection cnn = DriverManager.getConnection(url, user, passwd);
-            String sql = "select a from b_actview a where a.proid = "+proid;
+            String sql = "select * from b_actview a where a.proid = "+proid+" order by a.actid";
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             ActTable.setModel(DbUtils.resultSetToTableModel(rs));
-
         } catch (Exception e){
+            e.printStackTrace(); System.exit(-1);
         }
     }
-    public void ActUpdate(int proid) {
+    private void ActUpdate(int proid) {
          try {
             AccessDelphiDB db = new AccessDelphiDB(user,passwd);
             Statement st = null;
@@ -74,11 +128,12 @@ public class Training extends javax.swing.JDialog {
             String user = "winter342", passwd = "c3m4p2s";
             DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
             cnn = DriverManager.getConnection(url, user, passwd);
-            String sql = "select a from b_actview a where a.proid = "+proid;
+            String sql = "select * from b_actview a where a.proid = "+proid+" order by a.actid";
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             ActTable.setModel(DbUtils.resultSetToTableModel(rs));
          } catch (Exception e){
+             e.printStackTrace(); System.exit(-1);
          }
     }
     /**
@@ -485,8 +540,8 @@ public class Training extends javax.swing.JDialog {
         int height = Integer.parseInt(TrainProHeight.getText());
         int sweight = Integer.parseInt(TrainProSWeight.getText());
         int sbmi = Integer.parseInt(TrainProSBMI.getText());
-        int ebmi = -1; 
-        int eweight = -1; 
+        int ebmi = 0; 
+        int eweight = 0; 
         String sdate = TrainSDate.getText();
         String edate = TrainEDate.getText();
         //Activity
@@ -498,8 +553,6 @@ public class Training extends javax.swing.JDialog {
         }
           try {
             AccessDelphiDB db = new AccessDelphiDB(user,passwd);
-            //user = usr; passwd = pwd;
-            // Class.forName("oracle.jdbc.driver.OracleDriver");
             String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
             String user = "winter342", passwd = "c3m4p2s";
             DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
@@ -510,18 +563,41 @@ public class Training extends javax.swing.JDialog {
             while(rs.next()) {
                 id = rs.getInt("proid");
             }
-            id++;
+            if (Gym.edittag == 0) {
+            
+                id++;
+            }
+            out.println("updateval is set to: "+Gym.updateval);
             train.setProId(id);
+            if (Gym.updateval == 0) {
             db.executeSQL("INSERT into B_Training values("+id+","+height+","+sweight+","+eweight+","+sbmi+
                     ","+ebmi+",'"+pname+"','"+focus+"')");
-          
+            } 
+            if (Gym.updateval == 1) {
+                pname = TrainProName.getText();
+                focus = TrainProFocus.getText();
+                height = Integer.parseInt(TrainProHeight.getText());
+                sweight = Integer.parseInt(TrainProSWeight.getText());
+                sbmi = Integer.parseInt(TrainProSBMI.getText());
+                ebmi = Integer.parseInt(TrainProEBMI.getText()); 
+                eweight = Integer.parseInt(TrainProEWeight.getText());
+                db.executeSQL ("Update B_Training set MemHeight = "+height+", "
+                        + "MemStartWeight="+sweight+", MemEndWeight="+eweight+","
+                        + "Startbmi="+sbmi+",Endbmi="+ebmi+",Name='"+pname+"',"
+                        + "Focus='"+focus+"' where Proid="+TrainSelect());
+            }
+            out.println("ebmi is "+ebmi);
+
+          if (Gym.edittag == 0) {  
           Gym.empTrainSelect(id, sdate);
           Gym.memTrainSelect(id,sdate,edate);
+          ActUpdate(id);
+          }
           Gym.updateTrainerProTable();
       } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
         
 
-       // dispose();
+      dispose();
     }//GEN-LAST:event_ProSaveActionPerformed
 
     private void TrainProNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainProNameActionPerformed
@@ -609,9 +685,9 @@ public class Training extends javax.swing.JDialog {
             String invsql = "Insert into b_involves values ("+proid+","+actid+","+time+","+sets+","+reps+","
                     + ""+slimit+","+climit+")";
             db.executeSQL(invsql);
-            
+            ActUpdate(proid);
       } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
-        ActUpdate(GetProId());
+        //ActTable(GetProId());
     }//GEN-LAST:event_NewActivityActionPerformed
 
     private void TrainSDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainSDateActionPerformed
@@ -661,15 +737,15 @@ public class Training extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ActCLimit;
+    /*private javax.swing.JTextField ActCLimit;
     private javax.swing.JTextField ActName;
     private javax.swing.JTextField ActReps;
     private javax.swing.JTextField ActSLimit;
     private javax.swing.JTextField ActSets;
     //private javax.swing.JTable ActTable;
-    private javax.swing.JTextField ActTime;
+    private javax.swing.JTextField ActTime;*/
     private javax.swing.JButton NewActivity;
-    private javax.swing.JButton ProSave;
+    private javax.swing.JButton ProSave;/*
     private javax.swing.JTextField TrainEDate;
     private javax.swing.JTextField TrainProEBMI;
     private javax.swing.JTextField TrainProEWeight;
@@ -678,7 +754,7 @@ public class Training extends javax.swing.JDialog {
     private javax.swing.JTextField TrainProName;
     private javax.swing.JTextField TrainProSBMI;
     private javax.swing.JTextField TrainProSWeight;
-    private javax.swing.JTextField TrainSDate;
+    private javax.swing.JTextField TrainSDate;*/
     private javax.swing.JButton TrainingProgramReport;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -702,4 +778,19 @@ public class Training extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
     static public javax.swing.JTable ActTable;
+    static public javax.swing.JTextField ActCLimit;
+    static public javax.swing.JTextField ActName;
+    static public javax.swing.JTextField ActReps;
+    static public javax.swing.JTextField ActSLimit;
+    static public javax.swing.JTextField ActSets;
+    static public javax.swing.JTextField ActTime;
+    static public javax.swing.JTextField TrainEDate;
+    static public javax.swing.JTextField TrainProEBMI;
+    static public javax.swing.JTextField TrainProEWeight;
+    static public javax.swing.JTextField TrainProFocus;
+    static public javax.swing.JTextField TrainProHeight;
+    static public javax.swing.JTextField TrainProName;
+    static public javax.swing.JTextField TrainProSBMI;
+    static public javax.swing.JTextField TrainProSWeight;
+    static public javax.swing.JTextField TrainSDate;
 }
