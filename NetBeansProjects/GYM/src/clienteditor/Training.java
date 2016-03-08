@@ -677,9 +677,8 @@ public class Training extends javax.swing.JDialog {
             while(rst.next()) {
                 actid = rst.getInt("actid");
             }
-            proid =  GetProId();
+            proid =  TrainSelect();
             actid++;
-            proid -= 1;
             String actsql = "Insert into b_activity values ("+actid+",'"+actname+"')";
             db.executeSQL(actsql);
             String invsql = "Insert into b_involves values ("+proid+","+actid+","+time+","+sets+","+reps+","
