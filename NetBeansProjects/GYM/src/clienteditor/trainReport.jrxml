@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="proid" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     B_ACTVIEW."PROID" AS B_ACTVIEW_PROID,
+     B_ACTVIEW."SLIMIT" AS B_ACTVIEW_SLIMIT,
+     B_ACTVIEW."CLIMIT" AS B_ACTVIEW_CLIMIT,
+     B_ACTVIEW."TIME" AS B_ACTVIEW_TIME,
+     B_ACTVIEW."REPS" AS B_ACTVIEW_REPS,
+     B_ACTVIEW."SETS" AS B_ACTVIEW_SETS,
+     B_ACTVIEW."ACTNAME" AS B_ACTVIEW_ACTNAME,
+     B_MEMTRAIN."MEMFULLNAME" AS B_MEMTRAIN_MEMFULLNAME,
+     B_MEMTRAIN."SDATE" AS B_MEMTRAIN_SDATE,
+     B_MEMTRAIN."EDATE" AS B_MEMTRAIN_EDATE,
+     B_MEMTRAIN."PROID" AS B_MEMTRAIN_PROID,
+     B_MEMTRAIN."MEMHEIGHT" AS B_MEMTRAIN_MEMHEIGHT,
+     B_MEMTRAIN."MEMSTARTWEIGHT" AS B_MEMTRAIN_MEMSTARTWEIGHT,
+     B_MEMTRAIN."MEMENDWEIGHT" AS B_MEMTRAIN_MEMENDWEIGHT,
+     B_MEMTRAIN."STARTBMI" AS B_MEMTRAIN_STARTBMI,
+     B_MEMTRAIN."ENDBMI" AS B_MEMTRAIN_ENDBMI,
+     B_MEMTRAIN."NAME" AS B_MEMTRAIN_NAME,
+     B_MEMTRAIN."FOCUS" AS B_MEMTRAIN_FOCUS,
+     B_MEMTRAIN."DATECREATED" AS B_MEMTRAIN_DATECREATED,
+     B_MEMTRAIN."EMPFULLNAME" AS B_MEMTRAIN_EMPFULLNAME
+FROM
+     "WINTER342"."B_ACTVIEW" B_ACTVIEW,
+     "WINTER342"."B_MEMTRAIN" B_MEMTRAIN
+WHERE
+     B_MEMTRAIN.PROID = B_ACTVIEW.PROID and B_MEMTRAIN.PROID = $P{proid}]]>
+	</queryString>
+	<field name="B_ACTVIEW_PROID" class="java.math.BigDecimal"/>
+	<field name="B_ACTVIEW_SLIMIT" class="java.math.BigDecimal"/>
+	<field name="B_ACTVIEW_CLIMIT" class="java.math.BigDecimal"/>
+	<field name="B_ACTVIEW_TIME" class="java.math.BigDecimal"/>
+	<field name="B_ACTVIEW_REPS" class="java.math.BigDecimal"/>
+	<field name="B_ACTVIEW_SETS" class="java.math.BigDecimal"/>
+	<field name="B_ACTVIEW_ACTNAME" class="java.lang.String"/>
+	<field name="B_MEMTRAIN_MEMFULLNAME" class="java.lang.String"/>
+	<field name="B_MEMTRAIN_SDATE" class="java.sql.Timestamp"/>
+	<field name="B_MEMTRAIN_EDATE" class="java.sql.Timestamp"/>
+	<field name="B_MEMTRAIN_PROID" class="java.math.BigDecimal"/>
+	<field name="B_MEMTRAIN_MEMHEIGHT" class="java.math.BigDecimal"/>
+	<field name="B_MEMTRAIN_MEMSTARTWEIGHT" class="java.math.BigDecimal"/>
+	<field name="B_MEMTRAIN_MEMENDWEIGHT" class="java.math.BigDecimal"/>
+	<field name="B_MEMTRAIN_STARTBMI" class="java.math.BigDecimal"/>
+	<field name="B_MEMTRAIN_ENDBMI" class="java.math.BigDecimal"/>
+	<field name="B_MEMTRAIN_NAME" class="java.lang.String"/>
+	<field name="B_MEMTRAIN_FOCUS" class="java.lang.String"/>
+	<field name="B_MEMTRAIN_DATECREATED" class="java.sql.Timestamp"/>
+	<field name="B_MEMTRAIN_EMPFULLNAME" class="java.lang.String"/>
+	<group name="B_MEMTRAIN_NAME">
+		<groupExpression><![CDATA[$F{B_MEMTRAIN_NAME}]]></groupExpression>
+		<groupHeader>
+			<band height="7"/>
+		</groupHeader>
+	</group>
+	<group name="B_ACTVIEW_ACTNAME">
+		<groupExpression><![CDATA[$F{B_ACTVIEW_ACTNAME}]]></groupExpression>
+		<groupHeader>
+			<band height="97">
+				<textField>
+					<reportElement x="0" y="6" width="455" height="32" forecolor="#006699"/>
+					<textElement lineSpacing="Single">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_ACTVIEW_ACTNAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="242" y="39" width="71" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CLIMIT]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="20" y="60" width="68" height="20"/>
+					<textElement lineSpacing="Single">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_ACTVIEW_TIME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="128" y="39" width="59" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REPS]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="88" y="60" width="60" height="20"/>
+					<textElement lineSpacing="Single">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_ACTVIEW_SETS}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="39" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TIME]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="258" y="60" width="71" height="20"/>
+					<textElement lineSpacing="Single">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_ACTVIEW_CLIMIT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="187" y="39" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SLIMIT]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="148" y="60" width="59" height="20"/>
+					<textElement lineSpacing="Single">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_ACTVIEW_REPS}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="207" y="60" width="51" height="20"/>
+					<textElement lineSpacing="Single">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_ACTVIEW_SLIMIT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="68" y="39" width="60" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SETS]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<textField>
+					<reportElement x="312" y="20" width="279" height="43" forecolor="#FFFFFF"/>
+					<textElement lineSpacing="Single" markup="none">
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_MEMFULLNAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="20" width="309" height="43" forecolor="#FFFFFF"/>
+					<textElement lineSpacing="Single" markup="none">
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Training Program For "]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="109">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="46" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trainer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="68" y="46" width="60" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SDATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="128" y="46" width="59" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EDATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="187" y="46" width="64" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOCUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="251" y="46" width="58" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HEIGHT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="504" y="46" width="51" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EBMI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="447" y="46" width="57" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SBMI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="381" y="46" width="66" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EWEIGHT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="309" y="46" width="72" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SWEIGHT]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement lineSpacing="Single">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="66" width="68" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_EMPFULLNAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="68" y="66" width="60" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_SDATE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="128" y="66" width="59" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_EDATE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="197" y="66" width="54" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_FOCUS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="268" y="66" width="41" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_MEMHEIGHT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="515" y="66" width="40" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_ENDBMI}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="467" y="66" width="37" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_STARTBMI}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="400" y="66" width="47" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_MEMENDWEIGHT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="329" y="66" width="52" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{B_MEMTRAIN_MEMSTARTWEIGHT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -33,14 +33,13 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 import net.proteanit.sql.DbUtils;
-import clienteditor.Train.*;
-import static clienteditor.Training.TrainProEBMI;
-import static clienteditor.Training.TrainProEWeight;
-import static clienteditor.Training.TrainProFocus;
-import static clienteditor.Training.TrainProHeight;
-import static clienteditor.Training.TrainProName;
-import static clienteditor.Training.TrainProSBMI;
-import static clienteditor.Training.TrainProSWeight;
+import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.*;
+import java.util.HashMap;
+import javax.swing.JFrame;
+import net.sf.jasperreports.engine.design.JasperDesign;
+
 /**
  * Form that allows editing of information about one client.
  *
@@ -54,6 +53,8 @@ public class Gym extends javax.swing.JPanel {
     static Connection cnn;
     static int edittag;
     static int updateval;
+    static int editmem;
+    static int updatemem;
 
     public Gym() {
         initComponents();
@@ -64,6 +65,31 @@ public class Gym extends javax.swing.JPanel {
         trainerTable();
         updateEmployeeTable();
         updateEmpTrainerTable();
+    }
+    private void showIncome() {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+            Statement st = null;
+            ResultSet rs = null;
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            JasperDesign d = JasperManager.loadXmlDesign("//home/jonny/NetBeansProjects/GYM/src/clienteditor/gym.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport(d);
+            //int proid = TrainSelect();
+            HashMap param = new HashMap();
+            //param.put("proid", proid);
+            JasperPrint print = JasperFillManager.fillReport(jr, param, cnn);
+            JFrame frame = new JFrame("Report");
+            frame.getContentPane().add(new JRViewer(print));
+            frame.pack();
+            frame.setVisible(true);
+            cnn.close();
+
+         } catch (Exception e){
+             e.printStackTrace(); System.exit(-1);
+         }
     }
     private void trainerTable() {
         try {
@@ -78,6 +104,7 @@ public class Gym extends javax.swing.JPanel {
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             empTrainerTable.setModel(DbUtils.resultSetToTableModel(rs));
+            cnn.close();
         } catch (Exception e){
         }
     }
@@ -94,7 +121,7 @@ public class Gym extends javax.swing.JPanel {
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             MemTable.setModel(DbUtils.resultSetToTableModel(rs));
-
+            cnn.close();
         } catch (Exception e){
         }
     }
@@ -111,7 +138,7 @@ public class Gym extends javax.swing.JPanel {
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             memTrainingTable.setModel(DbUtils.resultSetToTableModel(rs));
-
+            cnn.close();
         } catch (Exception e){
         }
     }
@@ -128,6 +155,7 @@ public class Gym extends javax.swing.JPanel {
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             TPTable.setModel(DbUtils.resultSetToTableModel(rs));
+            cnn.close();
         } catch (Exception e){
         }
     }
@@ -144,6 +172,7 @@ public class Gym extends javax.swing.JPanel {
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             empTable.setModel(DbUtils.resultSetToTableModel(rs));
+            cnn.close();
         } catch (Exception e){
         }  
     }
@@ -156,10 +185,11 @@ public class Gym extends javax.swing.JPanel {
             String user = "winter342", passwd = "c3m4p2s";
             DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
             cnn = DriverManager.getConnection(url, user, passwd);
-            String sql = "select e.empid,e.efname,e.elname,e.etype from b_employee e where e.etype = 'Trainer'";
+            String sql = "select e.empid,e.efname,e.elname,e.etype from b_employee e where e.etype = 'Trainer' order by e.empid";
             st=cnn.prepareStatement(sql);
             rs = st.executeQuery(sql);
             empTrainerTable.setModel(DbUtils.resultSetToTableModel(rs));
+            cnn.close();
         } catch (Exception e){
         }  
     }
@@ -177,6 +207,7 @@ public class Gym extends javax.swing.JPanel {
             cnn = DriverManager.getConnection(url, user, passwd);
             String sql = "insert into b_trains values("+memid+","+proid+",to_date('"+sdate+"', 'mm/dd/yyyy'),to_date('"+edate+"', 'mm/dd/yyyy'))";
             db.executeSQL(sql);
+            cnn.close();
         } catch (Exception e) {
         }
     }
@@ -193,6 +224,7 @@ public class Gym extends javax.swing.JPanel {
             cnn = DriverManager.getConnection(url, user, passwd);
             String sql = "insert into b_makes values("+empid+","+proid+",to_date('"+sdate+"', 'mm/dd/yyyy'))";
             db.executeSQL(sql);
+            cnn.close();
         } catch (Exception e) {
         }
     }
@@ -201,6 +233,11 @@ public class Gym extends javax.swing.JPanel {
         int proid = Integer.parseInt( TPTable.getValueAt(selectedRow, 0).toString());
         return proid;
     } 
+    static public int MemSelect() {
+        int selectedRow = MemTable.getSelectedRow();
+        int memid = Integer.parseInt(MemTable.getValueAt(selectedRow, 0).toString());
+        return memid;
+    }
     /**
      * Returns <code>Client</code> being edited.
      * 
@@ -292,19 +329,11 @@ public class Gym extends javax.swing.JPanel {
         equDelete = new javax.swing.JButton();
         equSearch = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        IncomeSDate = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        IncomeEDate = new javax.swing.JTextField();
-        incomeReport = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        reportMemSDate = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        reportMemEDate = new javax.swing.JTextField();
-        MemJoinedReport = new javax.swing.JButton();
         empNewbutton = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         empTable = new javax.swing.JTable();
+        QIncome = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         clientInfoLabel = new javax.swing.JLabel();
         clientInfoLabel1 = new javax.swing.JLabel();
@@ -735,24 +764,6 @@ public class Gym extends javax.swing.JPanel {
 
         memTab.addTab("Maintenance", jPanel7);
 
-        jLabel12.setText("Create a report for Gyms income from Starting Date:");
-
-        jLabel13.setText("to Ending Date:");
-
-        IncomeEDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IncomeEDateActionPerformed(evt);
-            }
-        });
-
-        incomeReport.setText("Create Report");
-
-        jLabel14.setText("Create a report for how many Members joined from Starting Date:");
-
-        jLabel15.setText("to Ending Date:");
-
-        MemJoinedReport.setText("Create Report");
-
         empNewbutton.setText("New Employee");
         empNewbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -773,6 +784,15 @@ public class Gym extends javax.swing.JPanel {
         ));
         jScrollPane7.setViewportView(empTable);
 
+        QIncome.setText("QIncome");
+        QIncome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QIncomeActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Quarterly Income Report:");
+
         org.jdesktop.layout.GroupLayout jPanel9Layout = new org.jdesktop.layout.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -781,57 +801,26 @@ public class Gym extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel9Layout.createSequentialGroup()
-                        .add(jScrollPane7)
-                        .addContainerGap())
+                        .add(jLabel4)
+                        .add(18, 18, 18)
+                        .add(QIncome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 92, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE))
                     .add(jPanel9Layout.createSequentialGroup()
                         .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
-                                .add(jLabel12)
-                                .add(111, 111, 111))
+                            .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1123, Short.MAX_VALUE)
                             .add(jPanel9Layout.createSequentialGroup()
-                                .add(jLabel14)
-                                .add(31, 31, 31)))
-                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(IncomeSDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .add(reportMemSDate))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jPanel9Layout.createSequentialGroup()
-                                .add(jLabel13)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(IncomeEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                            .add(jPanel9Layout.createSequentialGroup()
-                                .add(jLabel15)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(reportMemEDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 90, Short.MAX_VALUE)
-                        .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(incomeReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                            .add(MemJoinedReport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .add(64, 64, 64))
-                    .add(jPanel9Layout.createSequentialGroup()
-                        .add(empNewbutton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .add(empNewbutton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel9Layout.createSequentialGroup()
-                .add(28, 28, 28)
+                .add(42, 42, 42)
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel12)
-                    .add(IncomeSDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel13)
-                    .add(IncomeEDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(incomeReport))
-                .add(18, 18, 18)
-                .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(reportMemSDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jLabel15)
-                        .add(reportMemEDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(MemJoinedReport))
-                    .add(jLabel14))
-                .add(25, 25, 25)
+                    .add(QIncome)
+                    .add(jLabel4))
+                .add(57, 57, 57)
                 .add(empNewbutton)
                 .add(18, 18, 18)
                 .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 142, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -912,13 +901,11 @@ public class Gym extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane4MousePressed
 
-    private void IncomeEDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncomeEDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IncomeEDateActionPerformed
-
     private void memNewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memNewbuttonActionPerformed
         // TODO add your handling code here:
         Members member = new Members(new javax.swing.JFrame(), true);
+        editmem = 0;
+        updatemem = 0;
         member.setVisible(true);
         
     }//GEN-LAST:event_memNewbuttonActionPerformed
@@ -964,16 +951,16 @@ public class Gym extends javax.swing.JPanel {
 
     private void memUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memUpdateButtonActionPerformed
         // TODO add your handling code here:
-       
+        Members member = new Members(new javax.swing.JFrame(), true);
+        editmem = 1;
+        updatemem = 1;
+        member.setMemFields(MemSelect());
+        member.setVisible(true);
     }//GEN-LAST:event_memUpdateButtonActionPerformed
 
     private void MemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemTableMouseClicked
         // TODO add your handling code here:
-        //MemTable.getSelectedRow();
-        
-        int row = MemTable.rowAtPoint(evt.getPoint());
-        int col = 0;
-        int memid = Integer.parseInt( MemTable.getValueAt(row, col).toString());
+       
     }//GEN-LAST:event_MemTableMouseClicked
 
     private void empTrainerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empTrainerTableMouseClicked
@@ -995,6 +982,11 @@ public class Gym extends javax.swing.JPanel {
         training.setFields(TrainSelect());
         training.setVisible(true);
     }//GEN-LAST:event_updateTrainActionPerformed
+
+    private void QIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QIncomeActionPerformed
+        // TODO add your handling code here:
+        showIncome();
+    }//GEN-LAST:event_QIncomeActionPerformed
     
     /**
      //* @param args the command line arguments
@@ -1076,14 +1068,12 @@ public class Gym extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IncomeEDate;
-    private javax.swing.JTextField IncomeSDate;
     private javax.swing.JLabel MemFirstLabel2;
-    private javax.swing.JButton MemJoinedReport;
     private javax.swing.JTextField MemSearchTP;
     private javax.swing.JTextField MemSearchTP1;
     //private javax.swing.JTable MemTable;
     //private javax.swing.JTable MemTable2;
+    private javax.swing.JButton QIncome;
     private javax.swing.JButton QuitButton;
     //private javax.swing.JTable TPTable;
     private java.util.List<clienteditor.B_Members> bMembersList;
@@ -1100,7 +1090,7 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JLabel clientInfoLabel1;
     private javax.swing.JButton empNewbutton;
     //private javax.swing.JTable empTable;
-    //private javax.swing.JTable empTrainerTable;
+   // private javax.swing.JTable empTrainerTable;
     private javax.persistence.EntityManager entityManager0;
     private javax.swing.JTextField equCost;
     private javax.swing.JButton equDelete;
@@ -1110,14 +1100,10 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JTextField equRepair;
     private javax.swing.JButton equSave;
     private javax.swing.JButton equSearch;
-    private javax.swing.JButton incomeReport;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
@@ -1144,8 +1130,6 @@ public class Gym extends javax.swing.JPanel {
     private javax.swing.JButton memTrainingProg;
     //private javax.swing.JTable memTrainingTable;
     private javax.swing.JButton memUpdateButton;
-    private javax.swing.JTextField reportMemEDate;
-    private javax.swing.JTextField reportMemSDate;
     private javax.swing.ButtonGroup sexButtonGroup;
     private javax.swing.JButton updateTrain;
     private javax.swing.JLabel validationMsgLabel;

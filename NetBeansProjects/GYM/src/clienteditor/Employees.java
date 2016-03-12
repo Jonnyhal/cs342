@@ -578,6 +578,7 @@ public class Employees extends javax.swing.JDialog {
                     +zip+","+phone+","+ssn+","+hrly+",to_date('"+sdate+"', 'mm/dd/yyyy'), null)");
             Gym.updateEmployeeTable();
             Gym.updateEmpTrainerTable();
+            cnn.close();
       } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
         dispose();
     }//GEN-LAST:event_SaveButtonActionPerformed

@@ -36,9 +36,60 @@ public class Members extends javax.swing.JDialog {
     public Members(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        if (Gym.editmem == 1) {
+            setMemFields(MemSelect());
+        }
     
     }
-    
+    public void setMemFields(int memid) {
+        try {
+            AccessDelphiDB db = new AccessDelphiDB(user,passwd);
+           
+            String url = "jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01";
+            String user = "winter342", passwd = "c3m4p2s";
+            DriverManager.registerDriver( new oracle.jdbc.driver.OracleDriver() );
+            cnn = DriverManager.getConnection(url, user, passwd);
+            Statement stmt = cnn.createStatement();
+            int id = 0;
+            int height = 0, sweight = 0, eweight = 0, sbmi = 0,ebmi = 0;
+            String name = null, focus = null;
+            ResultSet rs = stmt.executeQuery("Select p.* from B_Members p where p.memid = "+memid);
+            rs.next();
+            id = rs.getInt("memid");
+            String fname = rs.getString("Fname");
+            String lname = rs.getString("Lname");
+            String dob = rs.getString("DOB");
+            String ndob = dob.substring(0, dob.length() - 8);
+            String sex = rs.getString("sex");
+            String address = rs.getString("address");
+            String city = rs.getString("city");
+            String state = rs.getString("state");
+            int zip = rs.getInt("zip");
+            long phone = rs.getLong("phone");
+            String email = rs.getString("email");
+            String sdate = rs.getString("sdate");
+            String nsdate = sdate.substring(0, sdate.length() - 8);
+            String edate = rs.getString("edate");
+            firstName.setText(fname);
+            LastName.setText(lname);
+            DateOfBirth.setText(ndob);
+            if (sex.equals("M")) {
+                maleRadioButton.setSelected(true);
+            }
+            if (sex.equals("F")) {
+                femaleRadioButton.setSelected(true);
+            }
+            StreetAddr.setText(address);
+            City.setText(city);
+            State.setText(state);
+            Zip.setText(Integer.toString(zip));
+            PhoneNumber.setText(Long.toString(phone));
+            Email.setText(email);
+            StartDate.setText(nsdate);
+            
+        } catch (Exception e) {e.printStackTrace(); System.exit(-1);}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -857,54 +908,15 @@ public class Members extends javax.swing.JDialog {
         */
         /** First Name **/
         String fname = firstName.getText();
-        client.setFirstName(fname);
-        if (client.getFirstName() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter a First Name");
-        }
-        /** Last Name **/
         String lname = LastName.getText();
-        client.setLastName(lname);
-        if (LastName.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter a Last Name");
-        }
-
         String street = StreetAddr.getText();
-        client.setStreet(street);
-        if (client.getStreet() == null) {
-            // JOptionPane.showMessageDialog(null, "Please enter a Street Addr");
-        }
         String city = City.getText();
-        client.setCity(city);
-        if (client.getCity() == null) {
-            //JOptionPane.showMessageDialog(null, "Please enter a City");
-        }
         String state = State.getText();
-        client.setState(state);
-        if (client.getLastName() == null) {
-            // JOptionPane.showMessageDialog(null, "Please enter a State");
-        }
-        if (Zip.getText() != null) {
-            int zip = Integer.parseInt(Zip.getText());
-            client.setZip(zip);
-        }
-        if (client.getLastName() == null) {
-            //OptionPane.showMessageDialog(null, "Please enter a Zip");
-        }
-        String phone = PhoneNumber.getText();
-        //client.setPhone(phone);
-        //if (client.getPhone() == null) {
-            //JOptionPane.showMessageDialog(null, "Please enter a Phone Number");
-        //}
+        long phone = Long.parseLong(PhoneNumber.getText());
         String email = Email.getText();
-        client.setEmail(email);
-        if (client.getEmail() == null) {
-            //JOptionPane.showMessageDialog(null, "Please enter an Email");
-        
-        }
         String DOB = DateOfBirth.getText();
         int zip = Integer.parseInt(Zip.getText());
         String sDate = StartDate.getText();
-
         try {
             AccessDelphiDB db = new AccessDelphiDB(user,passwd);
             //user = usr; passwd = pwd;
@@ -919,14 +931,38 @@ public class Members extends javax.swing.JDialog {
             while(rs.next()) {
                 id = rs.getInt("memId");
             }
-            id++;
-            db.executeSQL("INSERT into B_Members values("+id+",'"+fname+"','"+lname+"',to_date('"
+            if (Gym.editmem == 0) {
+                id++;
+            
+            
+                db.executeSQL("INSERT into B_Members values("+id+",'"+fname+"','"+lname+"',to_date('"
                     +DOB+"','mm/dd/yyyy'),'" +client.getSex()+"','"+street+"','"+city+"','"
                     +state+"',"+zip+","+phone+",'"+email+"', to_date('"
                     +sDate+"', 'mm/dd/yyyy'),null);");
+            }
+            if (Gym.editmem == 1) {
+                char sex;
+                fname = firstName.getText();
+                lname = LastName.getText();
+                street = StreetAddr.getText();
+                city = City.getText();
+                state = State.getText();
+                phone = Long.parseLong(PhoneNumber.getText());
+                email = Email.getText();
+                zip = Integer.parseInt(Zip.getText());
+                if (maleRadioButton.isSelected()) {
+                    sex = 'm';
+                } else {
+                    sex = 'f';
+                }
+                db.executeSQL ("Update B_Members set Fname = '"+fname+"', "
+                        + "Lname='"+lname+"',"
+                        + "Sex='"+sex+"',Address='"+street+"',City='"+city+"',"
+                        + "State='"+state+"',Zip="+zip+",Phone="+phone+",Email='"+email+"' where Memid="+MemSelect());
+            }
           Gym.updateMemTable();
           Gym.updateMem2Table();
-
+          cnn.close();
       } catch (SQLException e ) { e.printStackTrace(); System.exit(-1); }
        
         dispose();
@@ -1178,4 +1214,8 @@ public class Members extends javax.swing.JDialog {
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel webLabel;
     // End of variables declaration//GEN-END:variables
+
+    private int strcmp(String sex, char c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
