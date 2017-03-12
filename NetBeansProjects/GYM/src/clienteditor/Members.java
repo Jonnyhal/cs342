@@ -951,9 +951,9 @@ public class Members extends javax.swing.JDialog {
                 email = Email.getText();
                 zip = Integer.parseInt(Zip.getText());
                 if (maleRadioButton.isSelected()) {
-                    sex = 'm';
+                    sex = 'M';
                 } else {
-                    sex = 'f';
+                    sex = 'F';
                 }
                 db.executeSQL ("Update B_Members set Fname = '"+fname+"', "
                         + "Lname='"+lname+"',"
